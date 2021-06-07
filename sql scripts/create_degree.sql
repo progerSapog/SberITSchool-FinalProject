@@ -1,0 +1,58 @@
+/* Создание таблицы ученый степеней (должностей внутри ВУЗа) */
+CREATE TABLE VST_ADMIN.ACADEMIC_DEGREE
+(
+    id   INTEGER NOT NULL,
+    name VARCHAR2(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+/* Генератор для id таблицы ACADEMIC_DEGREE на основе SEQUENCE*/
+CREATE SEQUENCE sq_degree_table
+    START WITH 1
+    INCREMENT BY 1
+    NOMAXVALUE;
+
+/* Создание тригера для перед вставкой в таблицу ACADEMIC_DEGREE */
+CREATE
+OR REPLACE TRIGGER tr_degree_table BEFORE INSERT ON VST_ADMIN.ACADEMIC_DEGREE
+    FOR EACH ROW
+BEGIN
+SELECT sq_degree_table.nextval
+INTO :new.id
+FROM SYS.DUAL;
+end;
+
+/* Вставка всех возможных ученых степеней */
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'лаборант');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'страший лаборант');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'ассистент');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'преподаватель');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'страший преподаватель');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'доцент');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'профессор');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'завкафедрой');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'декан');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'проректор');
+INSERT INTO VST_ADMIN.ACADEMIC_DEGREE
+VALUES ('', 'ректор');
+
+COMMIT;
+
+SELECT *
+FROM VST_ADMIN.ACADEMIC_DEGREE;
+
+
+
+DROP TRIGGER tr_degree_table;
+DROP SEQUENCE sq_degree_table;
+DROP TABLE VST_ADMIN.ACADEMIC_DEGREE;
