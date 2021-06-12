@@ -9,23 +9,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+/**
+ * Контроллер, отвечающий за взаимодействие с entity Applications
+ *
+ * @see Applications
+ * @see ApplicationsService
+ * */
 @Controller
 public class ApplicationController
 {
+    //DI ApplicationsService в данный контроллер
     @Autowired
     private ApplicationsService applicationsService;
 
+    /**
+     * Обработка запроса /.
+     * Получение списка заявок из БД, передача их на отображение
+     * jsp странице index, переход на данную страницу.
+     *
+     * @param model - объект для передачи данных с сервера на html/jsp страницу.
+     * @return имя страницы, на которую будет перенправлен пользователь
+     * */
     @RequestMapping("/")
     public String showAllAcademicDegree(Model model)
     {
         List<Applications> allApplications = applicationsService.findAll();
-
         model.addAttribute("allApplications", allApplications);
-
-        for (int i = 0; i < allApplications.size(); i++)
-        {
-            System.out.println(allApplications.get(i).getUser().getFirstName());
-        }
 
         return "index";
     }

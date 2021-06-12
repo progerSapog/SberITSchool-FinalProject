@@ -5,9 +5,17 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Класс объектов Role - таблица БД ROLE
+ * Для работы с БД entity должен реализовывать getters и setters
+ * для всех полей и иметь конструтор по умолчанию.
+ *
+ * Имеет bi-directional association с entity User
+ *
+ * @see User
+ * */
 @Entity
 @Table(name = "ROLE")
 public class Role implements GrantedAuthority
@@ -15,7 +23,8 @@ public class Role implements GrantedAuthority
     @Id
     @NotNull
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_role_table")
+    @SequenceGenerator(name = "sq_role_table", allocationSize = 1, sequenceName = "sq_role_table")
     private Long id;
 
     @NotNull
@@ -23,11 +32,12 @@ public class Role implements GrantedAuthority
     @Size(min = 2, message = "Неверная роль")
     private String name;
 
-    @NotNull
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    /*  bi-directional association с entity User
+        JoinTable - USER_ROLE */
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users = new HashSet<>();
+    private Set<User> users;
 
     public Role()
     {
@@ -36,12 +46,6 @@ public class Role implements GrantedAuthority
     public Role(Long id)
     {
         this.id = id;
-    }
-
-    public Role(Long id, String name)
-    {
-        this.id = id;
-        this.name = name;
     }
 
     public Long getId()

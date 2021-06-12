@@ -7,12 +7,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Сервис для взаимодействия с entity Applications при помощи
+ * ApplicationsRepository
+ *
+ * @see Applications
+ * @see ApplicationsRepository
+ * */
 @Service
 public class ApplicationsService
 {
+    //DI ApplicationsRepository в данный сервис
     @Autowired
     private ApplicationsRepository applicationsRepository;
 
+    /**
+     * Получение заявок - всех записей из таблицы
+     * APPLICATIONS
+     *
+     * @return список объектов - записей из таблицы
+     * */
     public List<Applications> findAll()
     {
         return applicationsRepository.findAll();

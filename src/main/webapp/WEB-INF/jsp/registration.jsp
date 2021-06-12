@@ -1,67 +1,65 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
   <meta charset="utf-8">
-    <title>Регистрация</title>
+  <title>Регистрация</title>
 </head>
 
 <body>
  <div>
-  <form:form method="post" modelAttribute="userForm">
+  <form:form method="POST" modelAttribute="userForm">
     <h2>Регистрация</h2>
     <div>
-      <form:input type="text" path="user.firstName" placeholder="Имя" autofocus="true"></form:input>
-      <form:errors path="user.firstName"> </form:errors>
-<%--      ${firstNameError}--%>
+      <form:input type="text" path="firstName" placeholder="Имя" autofocus="true"/>
+      <form:errors path="firstName"/>
     </div>
 
     <div>
-      <form:input type="text" path="user.lastName" placeholder="Фамилия" autofocus="true"></form:input>
-      <form:errors path="user.lastName"> </form:errors>
-<%--      ${lastNameError}--%>
+      <form:input type="text" path="lastName" placeholder="Фамилия" autofocus="true"/>
+      <form:errors path="lastName"/>
     </div>
 
     <div>
-      <form:input type="text" path="user.middleName" placeholder="Отчество" autofocus="true"></form:input>
-      <form:errors path="user.middleName"> </form:errors>
-<%--      ${middleNameError}--%>
+      <form:input type="text" path="middleName" placeholder="Отчество" autofocus="true"/>
+      <form:errors path="middleName"/>
     </div>
 
     <div>
-      <form:input type="text" path="user.email" placeholder="e-mail" autofocus="true"></form:input>
-      <form:errors path="user.email"> </form:errors>
-<%--      ${emailError}--%>
+      <form:input type="text" path="email" placeholder="e-mail" autofocus="true"/>
+      <form:errors path="email"/>
+      ${emailError}
     </div>
 
     <div>
       <p>Выберите кафедру: </p>
-      <form:select path="cathedraList">
-        <c:forEach var="carhedra" items="${userForm.cathedraList}">
-          <option value=">${carhedra}">${carhedra.name}</option>
+      <form:select path="cathedra">
+        <c:forEach var="cathedra" items="${cathedraList}">
+          <form:option value="${cathedra}" label="${cathedra.name}"/>
         </c:forEach>
       </form:select>
+      <br>
     </div>
-
 
     <div>
       <p>Выберите ученую степень: </p>
-      <form:select path="academicDegreeList">
-        <c:forEach var="academicDegree" items="${userForm.academicDegreeList}">
-          <option value=">${academicDegree}">${academicDegree.name}</option>
+      <form:select path="academicDegree">
+        <c:forEach var="academicDegree" items="${academicDegreeList}">
+          <form:option value="${academicDegree}" label="${academicDegree.name}"/>
         </c:forEach>
       </form:select>
     </div>
 
+    <br>
     <div>
-      <form:input type="password" path="user.password" placeholder="Password"></form:input>
+      <form:input type="password" path="password" placeholder="Password"/>
+      ${passwordError}
     </div>
 
     <div>
-      <form:input type="password" path="user.passwordConfirm" placeholder="Confirm your password"></form:input>
-      <form:errors path="user.password"> </form:errors>
-<%--      ${passwordError}--%>
+      <form:input type="password" path="passwordConfirm" placeholder="Confirm your password"/>
+      <form:errors path="password"/>
     </div>
 
     <button type="submit">Зарегистрироваться</button>
