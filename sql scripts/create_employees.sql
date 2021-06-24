@@ -7,12 +7,15 @@ CREATE TABLE VST_ADMIN.USERS
     first_name         VARCHAR2(100) NOT NULL,
     last_name          VARCHAR2(150) NOT NULL,
     middle_name        VARCHAR2(150) NOT NULL,
-    academic_degree_id INTEGER NOT NULL,
-    cathedra_id        INTEGER NOT NULL,
+    academic_degree_id INTEGER,
+    cathedra_id        INTEGER,
     PRIMARY KEY (id),
     FOREIGN KEY (academic_degree_id) REFERENCES VST_ADMIN.ACADEMIC_DEGREE (id),
     FOREIGN KEY (cathedra_id) REFERENCES VST_ADMIN.CATHEDRA (id)
 );
+
+ALTER TABLE USERS MODIFY (academic_degree_id null);
+ALTER TABLE USERS MODIFY (cathedra_id null);
 
 /* Генератор для id таблицы EMPLOYEES на основе SEQUENCE*/
 CREATE SEQUENCE sq_users_table
@@ -31,15 +34,25 @@ end;
 
 
 INSERT INTO VST_ADMIN.USERS
-VALUES ('', 'vst@gmail.com', 'qwe123', 'Дмитрий', 'Жевнерчук', 'Валерьевич', 8, 1);
+VALUES (115, 'vst@gmail.com', 'qwe123', 'Дмитрий', 'Жевнерчук', 'Валерьевич', 8, 1);
 INSERT INTO VST_ADMIN.USERS
-VALUES ('', 'martynov@gmail.com', 'qwe123', 'Мартынов', 'Дмитрий', 'Сергеевич', 5, 1);
+VALUES (116, 'martynov@gmail.com', 'qwe123', 'Мартынов', 'Дмитрий', 'Сергеевич', 5, 1);
 
+DELETE FROM USERS WHERE id > 112;
 COMMIT;
+
+
 
 
 SELECT *
 FROM VST_ADMIN.USERS;
+
+INSERT INTO VST_ADMIN.USERS
+VALUES (115, 'vwbhegst@gmail.com', 'qwe123', 'Дмитрий', 'Жевнерчук', 'Валерьевич', 8, 1);
+
+DELETE FROM USERS WHERE id = 115;
+
+
 
 SELECT VST_ADMIN.USERS.first_name  AS Имя,
        VST_ADMIN.USERS.last_name   AS Фамилия,
