@@ -11,11 +11,11 @@
     + Test
   + OrcaleDb driver
   + Spring Security-test
-  + Spring Security-taglist
+  + Spring Security-taglist 5.5.0
   + Junit
-  + Hibernate-validator
+  + Hibernate-validator 6.2.0
 + UI
-  + JSP (tomcat-embed-jasper, jstl)
+  + JSP (jstl 1.2)
 + Oracle DaatBase Enterprice 12.2.0.1  
 
 ### Описание сервиса
