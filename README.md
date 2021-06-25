@@ -15,4 +15,8 @@
   + Junit
   + Hibernate-validator
 + UI
-  + JSP (tomcat-embed-jasper, jstl
+  + JSP (tomcat-embed-jasper, jstl)
+<br>
+<br>
+<p> Сервис предназначен для сбора заявок на установку программного обеспечения внутри институа/кафедры. </p>
+
