@@ -41,4 +41,9 @@
 Пользователи могут:
 + Просматривать все записи
 + Залогиниться
-+ Зарегистрироваться
++ Зарегистрироваться  
+
+### Перед запуском
+Перед запуском необходимо добавить пользователя, sequence'ы и таблицы в OracleDB.  
+[Скрипт для создания](https://github.com/progerSapog/SberITSchool-FinalProject/blob/main/sql%20scripts/CreateDB.sql)  
+[Скрипт для удаления](https://github.com/progerSapog/SberITSchool-FinalProject/blob/main/sql%20scripts/DropDB.sql)
