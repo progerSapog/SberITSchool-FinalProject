@@ -72,7 +72,7 @@ public class User implements UserDetails
 
     /*  bi-directional many to many association with entity Role
     JoinTable - USER_ROLE */
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
@@ -128,6 +128,11 @@ public class User implements UserDetails
     }
 
     public User() {
+    }
+
+    public User(Long id)
+    {
+        this.id = id;
     }
 
     public Long getId()

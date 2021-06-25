@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+sqripnt_not_for_git
 
 ### STS ###
 .apt_generated

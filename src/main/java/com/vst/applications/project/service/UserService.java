@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -60,11 +61,20 @@ public class UserService implements UserDetailsService
      * @param user - пользователь, которого необходимо внести в таблицу
      * @return true, если пользователь успешно добавлен в таблицу
      * */
-    public boolean saveUser(User user)
+    public boolean addNewUser(User user)
     {
         //Попытка найти пользователя с такой почто в БД
         //Если такой пользователь есть, то возвращаем false
-        User userBD = userRepository.findByEmail(user.getEmail());
+        User userBD = null;
+        try
+        {
+            userBD = userRepository.findByEmail(user.getEmail());
+        }
+        catch (NonUniqueResultException e)
+        {
+            return false;
+        }
+
         if (userBD != null) return false;
 
         //Задаем роль пользователю. По умолчанию все новые пользователи имею статус - ROLE_USER
@@ -82,14 +92,29 @@ public class UserService implements UserDetailsService
         return true;
     }
 
-    public boolean save(User user)
+    /**
+     * Изменений данных пользователя
+     * */
+    public boolean update(User user)
     {
         User userBD = userRepository.findByEmail(user.getEmail());
-        if (userBD != null && !userBD.equals(user)) return false;
+        if (userBD != null && !userBD.getId().equals(user.getId())) return false;
+
+        //Задаем роль пользователю. По умолчанию все новые пользователи имею статус - ROLE_USER
+        if (user.getRoles() == null || user.getRoles().isEmpty())
+        {
+            user.setRoles(Collections.singleton(roleService.findByName("ROLE_USER")));
+        }
+
+        if (!user.getPasswordToChange().isEmpty())
+        {
+            user.setPassword(user.getPasswordToChange());
+        }
+
         //Запись хэшированного пароля
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
-        //сохранение пользователя
+        //сохранение  пользователя
         userRepository.save(user);
         return true;
     }

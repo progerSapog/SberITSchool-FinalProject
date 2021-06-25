@@ -14,9 +14,6 @@ CREATE TABLE VST_ADMIN.USERS
     FOREIGN KEY (cathedra_id) REFERENCES VST_ADMIN.CATHEDRA (id)
 );
 
-ALTER TABLE USERS MODIFY (academic_degree_id null);
-ALTER TABLE USERS MODIFY (cathedra_id null);
-
 /* Генератор для id таблицы EMPLOYEES на основе SEQUENCE*/
 CREATE SEQUENCE sq_users_table
     START WITH 1

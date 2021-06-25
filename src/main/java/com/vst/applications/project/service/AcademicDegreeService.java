@@ -3,7 +3,6 @@ package com.vst.applications.project.service;
 import com.vst.applications.project.entity.AcademicDegree;
 import com.vst.applications.project.repository.AcademicDegreeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

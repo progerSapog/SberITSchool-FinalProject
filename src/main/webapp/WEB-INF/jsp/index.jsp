@@ -22,14 +22,8 @@
     </sec:authorize>
 
   <sec:authorize access="hasRole('ADMIN')">
-      <h4><a href="${pageContext.request.contextPath}/logout">Выйти</a></h4>
       <h4><a href="${pageContext.request.contextPath}/cathedra/all">Список кафедр</a></h4>
       <h4><a href="${pageContext.request.contextPath}/user/all">Список пользователей</a></h4>
-  </sec:authorize>
-
-  <sec:authorize access="hasRole('USER')">
-      <h4><a href="${pageContext.request.contextPath}/logout">Выйти</a></h4>
-      <h4><a href="${pageContext.request.contextPath}/applications/all"></a></h4>
   </sec:authorize>
 </body>
 </html>

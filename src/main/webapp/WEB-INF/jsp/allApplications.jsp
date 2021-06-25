@@ -42,11 +42,13 @@
                 </sec:authorize>
 
                 <c:if test="${application.user.id.equals(user.id)}">
-                    <form action="${pageContext.request.contextPath}/applications/all" method="post">
-                        <input type="hidden" name="applicationId" value="${application.id}">
-                        <input type="hidden" name="action" value="delete">
-                        <button type="submit">Удалить</button>
-                    </form>
+                    <sec:authorize access="!hasRole('ADMIN')">
+                        <form action="${pageContext.request.contextPath}/applications/all" method="post">
+                            <input type="hidden" name="applicationId" value="${application.id}">
+                            <input type="hidden" name="action" value="delete">
+                            <button type="submit">Удалить</button>
+                        </form>
+                    </sec:authorize>
                 </c:if>
             </td>
         </tr>

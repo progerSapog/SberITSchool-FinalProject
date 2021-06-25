@@ -105,7 +105,7 @@ public class RegistrationController
 
         //Если не удалось сохранить данные, то возвращаем пользователя на страницу регистрации,
         //добавив в модель сообщение об том, что такой пользователь уже есть.
-        if (!userService.saveUser(userForm))
+        if (!userService.addNewUser(userForm))
         {
             model.addAttribute("emailError", "Пользователь с данной почтой уже существует");
             return "registration";

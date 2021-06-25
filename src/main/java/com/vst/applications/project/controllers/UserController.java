@@ -164,12 +164,7 @@ public class UserController
             return "updateUser";
         }
 
-        if (!userForm.getPasswordToChange().isEmpty())
-        {
-            userForm.setPassword(userForm.getPasswordToChange());
-        }
-
-        if (!userService.save(userForm))
+        if (!userService.update(userForm))
         {
             model.addAttribute("emailChangeError", "Почта уже занята");
             return "updateUser";

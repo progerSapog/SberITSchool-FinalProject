@@ -12,16 +12,6 @@ CREATE SEQUENCE sq_cathedra_table
     INCREMENT BY 1
     NOMAXVALUE;
 
-/* Создание тригера для перед вставкой в таблицу CATHEDRA */
-CREATE
-OR REPLACE TRIGGER tr_cathedra_table BEFORE INSERT ON VST_ADMIN.CATHEDRA
-    FOR EACH ROW
-BEGIN
-SELECT sq_cathedra_table.nextval
-INTO :new.id
-FROM SYS.DUAL;
-end;
-
 /* Вставка кафедр ИРИТа */
 INSERT INTO VST_ADMIN.CATHEDRA
 VALUES ('', 'Вычислительные системы и технологии');

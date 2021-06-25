@@ -33,13 +33,18 @@ public class Role implements GrantedAuthority
 
     /*  bi-directional association с entity User
         JoinTable - USER_ROLE */
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> users;
 
     public Role()
     {
+    }
+
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Role(Long id)

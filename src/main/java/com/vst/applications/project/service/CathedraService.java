@@ -56,7 +56,7 @@ public class CathedraService
      *
      * @param cathedra - кафедра, которую необходимо сохранить в БД.
      * */
-    public void saveCathedra(Cathedra cathedra)
+    public boolean saveCathedra(Cathedra cathedra)
     {
         Cathedra cathedraToCheck = cathedraRepository.findByName(cathedra.getName());
 
@@ -65,7 +65,10 @@ public class CathedraService
         if (cathedraToCheck == null)
         {
             cathedraRepository.save(cathedra);
+            return true;
         }
+
+        return false;
     }
 
     /**

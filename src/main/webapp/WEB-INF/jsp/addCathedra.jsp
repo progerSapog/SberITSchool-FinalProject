@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -17,7 +18,9 @@
 
     <div>
     <form:form method="post" action="save" modelAttribute="cathedraForAdd">
-        <form:hidden path="id"/>
+        <c:if test="${!cathedraForAdd.id.equals(null)}">
+            <form:hidden path="id"/>
+        </c:if>
         <div>
             Название кафедры:
             <form:input type="text" path="name" placeholder="Название кафедры" autofocus="true"/>

@@ -42,7 +42,6 @@ public class ApplicationsService
     {
         //сохранение заявки
         applicationsRepository.save(application);
-
         return true;
     }
 

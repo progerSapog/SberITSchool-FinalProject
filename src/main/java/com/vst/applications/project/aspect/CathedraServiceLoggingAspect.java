@@ -55,7 +55,7 @@ public class CathedraServiceLoggingAspect
     public void AfterSaveCathedra(JoinPoint joinPoint)
     {
         Object[] args = joinPoint.getArgs();
-        LOGGER.info("Сохранение в таблицу кафедры " + ((Cathedra)args[0]).getName());
+        LOGGER.info("Сохранение в таблицу кафедры " + ((Cathedra)args[0]).getName() + " " + ((Cathedra)args[0]).getId());
     }
 
     /**
