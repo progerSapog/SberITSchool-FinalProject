@@ -121,6 +121,7 @@ CREATE SEQUENCE VST_ADMIN.sq_users_table
     NOMAXVALUE;
 
 /* Вставка Admin */
+/* email:admin@gmail.com password: admin */
 INSERT INTO VST_ADMIN.USERS
 VALUES (1, 'admin@gmail.com', '$2y$12$xcJawS6MgXm7uRsed6TFB.ADvqXIZfwd7c8DZZvQuOeT3UHi7lj0q', 'Admin', 'VST', '1', 6, 1);
 /***********************************************************************/
