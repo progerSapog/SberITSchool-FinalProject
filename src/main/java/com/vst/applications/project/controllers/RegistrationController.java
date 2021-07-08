@@ -51,7 +51,7 @@ public class RegistrationController
     @GetMapping
     public String registration(Model model)
     {
-        Map<String, List> map = new HashMap<>();
+        Map<String, List<?>> map = new HashMap<>();
         map.put("cathedraList", cathedraService.findAll());
         map.put("academicDegreeList", academicDegreeService.findAll());
 
@@ -62,6 +62,7 @@ public class RegistrationController
         //Добавление к модели map, содержащей списки
         model.mergeAttributes(map);
 
+//        return "registration";
         return "registration";
     }
 
