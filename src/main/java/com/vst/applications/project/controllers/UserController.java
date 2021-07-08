@@ -82,12 +82,12 @@ public class UserController
      * @return имя страниц
      * */
     @PostMapping("/all")
-    public String deleteUser(@RequestParam(defaultValue = "") Long userId,
+    public String deleteUser(@RequestParam(defaultValue = "") String userId,
                              @RequestParam(defaultValue = "") String action)
     {
         if (action.equals("delete"))
         {
-            userService.deleteUser(userId);
+            userService.deleteUser(Long.parseLong(userId));
         }
 
         return "redirect:/user/all";
