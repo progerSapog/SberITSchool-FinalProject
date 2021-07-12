@@ -1,5 +1,7 @@
 package com.vst.applications.project.DTO;
 
+import com.vst.applications.project.entity.Department;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -8,9 +10,9 @@ import javax.validation.constraints.Size;
  * Используется для передачи данных между клиенской и серверной частями.
  * Осуществляет валидацию данных.
  *
- * @see com.vst.applications.project.entity.Cathedra
+ * @see Department
  */
-public class CathedraDTO
+public class DepartmentDTO
 {
     private Long id;
 
@@ -18,7 +20,7 @@ public class CathedraDTO
     @Size(min = 2, message = "Неверная кафедра")
     private String name;
 
-    public CathedraDTO()
+    public DepartmentDTO()
     {
     }
 

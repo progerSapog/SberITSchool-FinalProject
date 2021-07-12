@@ -3,8 +3,9 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>Collection of applications</title>
+  <meta charset="UTF-8">
+  <title>Collection of applications</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
   <div sec:authorize="isAuthenticated()">
@@ -19,7 +20,7 @@
   </div>
 
   <h4>
-    <a href="$/applications/all">Заявки</a>
+    <a href="/application/all">Заявки</a>
   </h4>
 
   <div sec:authorize="!isAuthenticated()">
@@ -33,7 +34,7 @@
 
   <div sec:authorize="hasRole('ADMIN')">
     <h4>
-      <a href="/cathedra/all">Список кафедр</a>
+      <a href="/department/all">Список кафедр</a>
     </h4>
     <h4>
       <a href="/user/all">Список пользователей</a>

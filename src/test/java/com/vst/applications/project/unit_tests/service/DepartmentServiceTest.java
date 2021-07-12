@@ -1,9 +1,9 @@
 package com.vst.applications.project.unit_tests.service;
 
-import com.vst.applications.project.entity.Cathedra;
+import com.vst.applications.project.entity.Department;
 import com.vst.applications.project.entity.User;
-import com.vst.applications.project.repository.CathedraRepository;
-import com.vst.applications.project.service.CathedraService;
+import com.vst.applications.project.repository.DepartmentRepository;
+import com.vst.applications.project.service.DepartmentService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -19,13 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class CathedraServiceTest
+class DepartmentServiceTest
 {
     @Autowired
-    private CathedraService cathedraService;
+    private DepartmentService departmentService;
 
     @MockBean
-    private CathedraRepository cathedraRepository;
+    private DepartmentRepository departmentRepository;
 
     /**
      * Тестирование метода findAll()
@@ -35,10 +35,10 @@ class CathedraServiceTest
     void findAllTest()
     {
         Mockito.doReturn(new ArrayList<User>())
-                .when(cathedraRepository)
+                .when(departmentRepository)
                 .findAll();
-        assertNotNull(cathedraService.findAll());
-        Mockito.verify(cathedraRepository, Mockito.times(1)).findAll();
+        assertNotNull(departmentService.findAll());
+        Mockito.verify(departmentRepository, Mockito.times(1)).findAll();
     }
 
     /**
@@ -48,8 +48,8 @@ class CathedraServiceTest
     @Test
     void saveCathedraTest()
     {
-        Cathedra cathedra = new Cathedra();
-        assertTrue(cathedraService.saveCathedra(cathedra));
-        Mockito.verify(cathedraRepository, Mockito.times(1)).save(cathedra);
+        Department department = new Department();
+        assertTrue(departmentService.save(department));
+        Mockito.verify(departmentRepository, Mockito.times(1)).save(department);
     }
 }

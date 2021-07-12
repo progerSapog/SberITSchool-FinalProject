@@ -4,7 +4,7 @@ GRANT ALL PRIVILEGES TO VST_ADMIN;
 
 /***********************************************************************/
 /* Создание таблицы кафедр ИРИТа */
-CREATE TABLE VST_ADMIN.CATHEDRA
+CREATE TABLE VST_ADMIN.DEPARTMENT
 (
     id   INTEGER NOT NULL,
     name VARCHAR2(150) NOT NULL,
@@ -12,27 +12,27 @@ CREATE TABLE VST_ADMIN.CATHEDRA
 );
 
 /* Генератор для id таблицы CATHEDRA на основе SEQUENCE*/
-CREATE SEQUENCE VST_ADMIN.sq_cathedra_table
+CREATE SEQUENCE VST_ADMIN.sq_department_table
     START WITH 9
     INCREMENT BY 1
     NOMAXVALUE;
 
 /* Вставка кафедр ИРИТа */
-INSERT INTO VST_ADMIN.CATHEDRA
+INSERT INTO VST_ADMIN.DEPARTMENT
 VALUES (1, 'Вычислительные системы и технологии');
-INSERT INTO VST_ADMIN.CATHEDRA
+INSERT INTO VST_ADMIN.DEPARTMENT
 VALUES (2, 'Графические информационные системы');
-INSERT INTO VST_ADMIN.CATHEDRA
+INSERT INTO VST_ADMIN.DEPARTMENT
 VALUES (3, 'Информационные радиосистемы');
-INSERT INTO VST_ADMIN.CATHEDRA
+INSERT INTO VST_ADMIN.DEPARTMENT
 VALUES (4, 'Информатика и системы управления');
-INSERT INTO VST_ADMIN.CATHEDRA
+INSERT INTO VST_ADMIN.DEPARTMENT
 VALUES (5, 'Компьютерные технологии в проектировании и производстве');
-INSERT INTO VST_ADMIN.CATHEDRA
+INSERT INTO VST_ADMIN.DEPARTMENT
 VALUES (6, 'Прикладная математика');
-INSERT INTO VST_ADMIN.CATHEDRA
+INSERT INTO VST_ADMIN.DEPARTMENT
 VALUES (7, 'Электроника и сети ЭВМ');
-INSERT INTO VST_ADMIN.CATHEDRA
+INSERT INTO VST_ADMIN.DEPARTMENT
 VALUES (8, 'Информационная безопастность вычислительных систем и сетей');
 /***********************************************************************/
 
@@ -108,10 +108,10 @@ CREATE TABLE VST_ADMIN.USERS
     last_name          VARCHAR2(150) NOT NULL,
     middle_name        VARCHAR2(150) NOT NULL,
     academic_degree_id INTEGER,
-    cathedra_id        INTEGER,
+    department_id      INTEGER,
     PRIMARY KEY (id),
     FOREIGN KEY (academic_degree_id) REFERENCES VST_ADMIN.ACADEMIC_DEGREE (id),
-    FOREIGN KEY (cathedra_id) REFERENCES VST_ADMIN.CATHEDRA (id)
+    FOREIGN KEY (department_id) REFERENCES VST_ADMIN.DEPARTMENT (id)
 );
 
 /* Генератор для id таблицы EMPLOYEES на основе SEQUENCE*/
@@ -123,7 +123,7 @@ CREATE SEQUENCE VST_ADMIN.sq_users_table
 /* Вставка Admin */
 /* email:admin@gmail.com password: admin */
 INSERT INTO VST_ADMIN.USERS
-VALUES (1, 'admin@gmail.com', '$2y$12$xcJawS6MgXm7uRsed6TFB.ADvqXIZfwd7c8DZZvQuOeT3UHi7lj0q', 'Admin', 'VST', '1', 6, 1);
+VALUES (1, 'admin@gmail.com', '$2y$12$xcJawS6MgXm7uRsed6TFB.ADvqXIZfwd7c8DZZvQuOeT3UHi7lj0q', 'Admin1', 'Admin1', 'Admin1', 6, 1);
 /***********************************************************************/
 
 /***********************************************************************/

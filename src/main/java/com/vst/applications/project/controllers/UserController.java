@@ -3,7 +3,7 @@ package com.vst.applications.project.controllers;
 import com.vst.applications.project.entity.Role;
 import com.vst.applications.project.entity.User;
 import com.vst.applications.project.service.AcademicDegreeService;
-import com.vst.applications.project.service.CathedraService;
+import com.vst.applications.project.service.DepartmentService;
 import com.vst.applications.project.service.RoleService;
 import com.vst.applications.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class UserController
     private RoleService roleService;
 
     @Autowired
-    private CathedraService cathedraService;
+    private DepartmentService departmentService;
 
     @Autowired
     private AcademicDegreeService academicDegreeService;
@@ -107,7 +107,7 @@ public class UserController
     {
         Map<String, Object> map = new HashMap<>();
         map.put("userForm", user);
-        map.put("cathedraList", cathedraService.findAll());
+        map.put("cathedraList", departmentService.findAll());
         map.put("academicDegreeList", academicDegreeService.findAll());
 
         //Чтобы форма с паролем была изначальна пуста, устнаваливаем пароль = null
@@ -135,8 +135,8 @@ public class UserController
     {
         Optional<User> userFromDB = userService.findById(userForm.getId());
 
-        Map<String, List> map = new HashMap<>();
-        map.put("cathedraList", cathedraService.findAll());
+        Map<String, List<?>> map = new HashMap<>();
+        map.put("cathedraList", departmentService.findAll());
         map.put("academicDegreeList", academicDegreeService.findAll());
         model.mergeAttributes(map);
 

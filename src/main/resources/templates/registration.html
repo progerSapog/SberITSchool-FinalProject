@@ -38,10 +38,10 @@
         <div>
             Выберите кафедру:
             <label>
-                <select class="cathedra" th:field="${userForm.cathedra}">
-                    <option th:each="cathedra : ${cathedraList}"
-                            th:value="${cathedra.id}"
-                            th:text="${cathedra.name}">
+                <select class="department" th:field="${userForm.department}">
+                    <option th:each="department : ${cathedraList}"
+                            th:value="${department.id}"
+                            th:text="${department.name}">
                     </option>
                 </select>
             </label>
@@ -49,7 +49,7 @@
         <div>
             Выберите ученую степень:
             <label>
-                <select class="cathedra" th:field="${userForm.academicDegree}">
+                <select class="department" th:field="${userForm.academicDegree}">
                     <option th:each="academicDegree : ${academicDegreeList}"
                             th:value="${academicDegree.id}"
                             th:text="${academicDegree.name}">

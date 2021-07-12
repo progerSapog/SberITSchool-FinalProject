@@ -36,9 +36,9 @@
 
     <div>
       <p>Выберите кафедру: </p>
-      <form:select path="cathedra">
-        <c:forEach var="cathedra" items="${cathedraList}">
-          <form:option value="${cathedra}" label="${cathedra.name}"/>
+      <form:select path="department">
+        <c:forEach var="department" items="${cathedraList}">
+          <form:option value="${department}" label="${department.name}"/>
         </c:forEach>
       </form:select>
       <br>

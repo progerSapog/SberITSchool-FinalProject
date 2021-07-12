@@ -1,6 +1,6 @@
 package com.vst.applications.project.repository;
 
-import com.vst.applications.project.entity.Cathedra;
+import com.vst.applications.project.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.Optional;
  * Интерфейс, использующий JPA Entity для взаимодействия с Entity
  * Cathedra
  *
- * @see Cathedra
+ * @see Department
  * */
-public interface CathedraRepository extends JpaRepository<Cathedra, Long>
+public interface DepartmentRepository extends JpaRepository<Department, Long>
 {
     /**
      * Нахождение всех записей из таблицы.
@@ -20,7 +20,7 @@ public interface CathedraRepository extends JpaRepository<Cathedra, Long>
      * @return - список объектов - записей данного entity
      * */
     @Override
-    List<Cathedra> findAll();
+    List<Department> findAll();
 
     /**
      * Удаление из БД по id
@@ -33,10 +33,10 @@ public interface CathedraRepository extends JpaRepository<Cathedra, Long>
     /**
      * Сохранение объекта в БД
      *
-     * @param cathedra - объект, который необходимо сохроанить.
+     * @param department - объект, который необходимо сохроанить.
      * */
     @Override
-    Cathedra save(Cathedra cathedra);
+    Department save(Department department);
 
 
     /**
@@ -44,7 +44,7 @@ public interface CathedraRepository extends JpaRepository<Cathedra, Long>
      *
      * @param name - имя, по которому необходимо найти запись
      * */
-    Cathedra findByName(String name);
+    Department findByName(String name);
 
     /**
      * Поиск записи по id
@@ -52,5 +52,5 @@ public interface CathedraRepository extends JpaRepository<Cathedra, Long>
      * @param id - id записи, которую необходимо найти
      * */
     @Override
-    Optional<Cathedra> findById(Long id);
+    Optional<Department> findById(Long id);
 }

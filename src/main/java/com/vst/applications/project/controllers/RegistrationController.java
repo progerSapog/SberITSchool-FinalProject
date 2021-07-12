@@ -2,7 +2,7 @@ package com.vst.applications.project.controllers;
 
 import com.vst.applications.project.entity.User;
 import com.vst.applications.project.service.AcademicDegreeService;
-import com.vst.applications.project.service.CathedraService;
+import com.vst.applications.project.service.DepartmentService;
 import com.vst.applications.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ import java.util.Map;
  * Контроллер, отвечающий за регистрацию.
  *
  * @see UserService
- * @see CathedraService
+ * @see DepartmentService
  * @see AcademicDegreeService
  * */
 @Controller
@@ -34,7 +34,7 @@ public class RegistrationController
     private UserService userService;
 
     @Autowired
-    private CathedraService cathedraService;
+    private DepartmentService departmentService;
 
     @Autowired
     private AcademicDegreeService academicDegreeService;
@@ -52,7 +52,7 @@ public class RegistrationController
     public String registration(Model model)
     {
         Map<String, List<?>> map = new HashMap<>();
-        map.put("cathedraList", cathedraService.findAll());
+        map.put("cathedraList", departmentService.findAll());
         map.put("academicDegreeList", academicDegreeService.findAll());
 
         /* Добавление в модель пустого User позволит при заполнении формы получить не
@@ -85,7 +85,7 @@ public class RegistrationController
     public String addNewUser(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)
     {
         Map<String, List> map = new HashMap<>();
-        map.put("cathedraList", cathedraService.findAll());
+        map.put("cathedraList", departmentService.findAll());
         map.put("academicDegreeList", academicDegreeService.findAll());
         model.mergeAttributes(map);
 

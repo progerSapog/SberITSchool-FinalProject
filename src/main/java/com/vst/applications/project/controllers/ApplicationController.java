@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,7 +22,7 @@ import java.util.Map;
  * @see ApplicationsService
  * */
 @Controller
-@RequestMapping("/applications")
+@RequestMapping("/application")
 public class ApplicationController
 {
     //DI ApplicationsService в данный контроллер
@@ -41,11 +40,9 @@ public class ApplicationController
     @GetMapping("/all")
     public String showAllApplications(@AuthenticationPrincipal User user, Model model)
     {
-        List<Applications> allApplications = applicationsService.findAll();
-
         Map<String, Object> map = new HashMap<>();
         map.put("user", user);
-        map.put("allApplications", allApplications);
+        map.put("allApplications", applicationsService.findAll());
 
         model.mergeAttributes(map);
 
@@ -71,7 +68,7 @@ public class ApplicationController
         {
             applicationsService.deleteApplication(applicationId);
         }
-        return "redirect:/applications/all";
+        return "redirect:/application/all";
     }
 
     /**
@@ -86,7 +83,7 @@ public class ApplicationController
     public String addApplications(Model model)
     {
         model.addAttribute("appForm", new ApplicationsDTO());
-        return "addApplications";
+        return "addApplication";
     }
 
     /**
@@ -110,7 +107,7 @@ public class ApplicationController
         //обратно на эту же страницу
         if (bindingResult.hasErrors())
         {
-            return "addApplications";
+            return "addApplication";
         }
 
         Applications applications = new Applications(null, appForm.getAudienceNumber(), appForm.getText());
@@ -121,10 +118,10 @@ public class ApplicationController
         if (!applicationsService.saveApplication(applications))
         {
             model.addAttribute("appError", "При создании заявки произошла ошибка");
-            return "addApplications";
+            return "addApplication";
         }
 
         //Перенаправление в случае удачной регистрации
-        return "redirect:/applications/all";
+        return "redirect:/application/all";
     }
 }

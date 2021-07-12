@@ -20,20 +20,20 @@
                 <th>Название</th>
                 <th colspan="2">Действия</th>
             </tr>
-            <c:forEach var="cathedra" items="${allCathedra}">
+            <c:forEach var="department" items="${allCathedra}">
 
-                <c:url var="updateButton" value="/cathedra/update">
-                    <c:param name="cathedraId" value="${cathedra.id}"/>
+                <c:url var="updateButton" value="/department/update">
+                    <c:param name="cathedraId" value="${department.id}"/>
                 </c:url>
 
                 <tr>
-                    <td>${cathedra.name}</td>
+                    <td>${department.name}</td>
                     <td>
                         <input type="button" value="Изменить" onclick="window.location.href = '${updateButton}'"/>
                     </td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/cathedra/all" method="post">
-                            <input type="hidden" name="cathedraId" value="${cathedra.id}">
+                        <form action="${pageContext.request.contextPath}/department/all" method="post">
+                            <input type="hidden" name="cathedraId" value="${department.id}">
                             <input type="hidden" name="action" value="delete">
                             <button type="submit">Удалить</button>
                         </form>
@@ -43,7 +43,7 @@
         </table>
     <br>
 
-    <input type="button" value="Добавить"  onclick="window.location.href = '${pageContext.request.contextPath}/cathedra/add'"/>
+    <input type="button" value="Добавить"  onclick="window.location.href = '${pageContext.request.contextPath}/department/add'"/>
     <a href="${pageContext.request.contextPath}/">Главная</a>
     </body>
 </html>

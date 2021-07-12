@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>new department</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div sec:authorize="isAuthenticated()">
+        <h3>
+            <a href="/user/update">
+                <label th:text="${#authentication.getPrincipal().getUsername()}"></label>
+            </a>
+        </h3>
+        <h4>
+            <a href="/logout">Выйти</a>
+        </h4>
+    </div>
+
+    <form th:action="@{/department/save}" method="post">
+        <div th:if="${cathedraForAdd.id != null}">
+            <label>
+                <input type="hidden" th:field="${cathedraForAdd.id}"/>
+            </label>
+        </div>
+        Название кафедры:
+            <label>
+                <input type="text" th:field="${cathedraForAdd.name}" placeholder="Название кафедры" required minlength="2">
+            </label>
+            <label class="form-field-error" th:if="${#fields.hasErrors('cathedraForAdd.name')}" th:errors="*{cathedraForAdd.name}" ></label>
+        <input type="submit" value="OK">
+    </form>
+</body>
+</html>

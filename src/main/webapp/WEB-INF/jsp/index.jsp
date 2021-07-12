@@ -22,7 +22,7 @@
     </sec:authorize>
 
   <sec:authorize access="hasRole('ADMIN')">
-      <h4><a href="${pageContext.request.contextPath}/cathedra/all">Список кафедр</a></h4>
+      <h4><a href="${pageContext.request.contextPath}/department/all">Список кафедр</a></h4>
       <h4><a href="${pageContext.request.contextPath}/user/all">Список пользователей</a></h4>
   </sec:authorize>
 </body>

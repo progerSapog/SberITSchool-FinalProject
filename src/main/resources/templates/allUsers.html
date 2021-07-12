@@ -3,8 +3,9 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>Users</title>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
   <div sec:authorize="isAuthenticated()">
@@ -33,15 +34,15 @@
       <th colspan="2">Роль</th>
     </tr>
     <tr th:each="user: ${users}">
-      <td th:text="${user.id}"></td>
+      <td><span th:text="${user.id}"></span></td>
       <td><span th:text="${user.firstName}"></span></td>
       <td><span th:text="${user.lastName}"></span></td>
       <td><span th:text="${user.middleName}"></span></td>
-      <td><span th:text="${user.academicDegree}"></span></td>
+      <td><span th:text="${user.academicDegree.name}"></span></td>
       <td>
-        <span th:if="${user.cathedra == null}">-</span>
-        <span th:unless="${user.cathedra == null}">
-          <span th:text="${user.cathedra}"></span>
+        <span th:if="${user.department == null}">-</span>
+        <span th:unless="${user.department == null}">
+          <span th:text="${user.department.name}"></span>
         </span>
       </td>
       <td><span th:text="${user.email}"></span></td>
@@ -50,12 +51,13 @@
               th:text="${role.name}">></span>
       </td>
       <td>
-        <span th:if="${!user.roles.contains(roleAdmin)}"></span>
-        <form action="/user/all" method="post">
-          <input type="hidden" name="userId" th:value="${user.id}">
-          <input type="hidden" name="action" value="delete">
-          <button type="submit">Удалить</button>
-        </form>
+        <span th:if="${!user.roles.contains(roleAdmin)}">
+          <form action="/user/all" method="post">
+            <input type="hidden" name="userId" th:value="${user.id}">
+            <input type="hidden" name="action" value="delete">
+            <button type="submit">Удалить</button>
+          </form>
+        </span>
       </td>
     </tr>
 

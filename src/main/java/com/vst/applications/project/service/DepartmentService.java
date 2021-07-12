@@ -1,7 +1,7 @@
 package com.vst.applications.project.service;
 
-import com.vst.applications.project.entity.Cathedra;
-import com.vst.applications.project.repository.CathedraRepository;
+import com.vst.applications.project.entity.Department;
+import com.vst.applications.project.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +12,15 @@ import java.util.Optional;
  * Сервис для взаимодействия с entity Cathedra при помощи
  * CathedraRepository
  *
- * @see Cathedra
- * @see CathedraRepository
+ * @see Department
+ * @see DepartmentRepository
  * */
 @Service
-public class CathedraService
+public class DepartmentService
 {
     //DI CathedraRepository в данный сервис
     @Autowired
-    private CathedraRepository cathedraRepository;
+    private DepartmentRepository departmentRepository;
 
     /**
      * Получение кафедр - всех записей из таблицы
@@ -28,43 +28,43 @@ public class CathedraService
      *
      * @return список объектов - записей из таблицы
      * */
-    public List<Cathedra> findAll()
+    public List<Department> findAll()
     {
-        return cathedraRepository.findAll();
+        return departmentRepository.findAll();
     }
 
     /**
      * Удаление кафедры из БД по id.
      *
      * @param id - id кафедры, которую необходимо удалить */
-    public void deleteCathedra(Long id)
+    public void delete(Long id)
     {
-        Optional<Cathedra> cathedraOpt = cathedraRepository.findById(id);
+        Optional<Department> cathedraOpt = departmentRepository.findById(id);
 
         //Перед удалением кафедры необходимо удалить ссылки на эту кафедру
         //у пользователей
         if (cathedraOpt.isPresent())
         {
-            cathedraOpt.get().getUsers().forEach(x -> x.setCathedra(null));
+            cathedraOpt.get().getUsers().forEach(x -> x.setDepartment(null));
 
-            cathedraRepository.deleteById(id);
+            departmentRepository.deleteById(id);
         }
     }
 
     /**
      * Сохранение кафедры в БД.
      *
-     * @param cathedra - кафедра, которую необходимо сохранить в БД.
+     * @param department - кафедра, которую необходимо сохранить в БД.
      * */
-    public boolean saveCathedra(Cathedra cathedra)
+    public boolean save(Department department)
     {
-        Cathedra cathedraToCheck = cathedraRepository.findByName(cathedra.getName());
+        Department departmentToCheck = departmentRepository.findByName(department.getName());
 
         //Если кафедры с таким именем нет, то добавляем ее,
         //иначе игнорируем попытку добавления
-        if (cathedraToCheck == null)
+        if (departmentToCheck == null)
         {
-            cathedraRepository.save(cathedra);
+            departmentRepository.save(department);
             return true;
         }
 
@@ -75,8 +75,8 @@ public class CathedraService
      * Нахождение кафедры в БД по id.
      * @param id - id по которому необходимо найти кафедру в БД.
      * */
-    public Optional<Cathedra> findById(Long id)
+    public Optional<Department> findById(Long id)
     {
-        return cathedraRepository.findById(id);
+        return departmentRepository.findById(id);
     }
 }

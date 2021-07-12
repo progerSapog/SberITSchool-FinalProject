@@ -35,9 +35,9 @@
                 <td>${user.academicDegree.name}</td>
                 <td>
                     <c:choose>
-                        <c:when test="${user.cathedra==null}"> - </c:when>
+                        <c:when test="${user.department==null}"> - </c:when>
                     <c:otherwise>
-                        ${user.cathedra.name}
+                        ${user.department.name}
                     </c:otherwise>
                     </c:choose>
                 </td>
