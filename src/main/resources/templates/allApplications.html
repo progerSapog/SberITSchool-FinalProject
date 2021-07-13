@@ -44,12 +44,14 @@
             </form>
           </div>
 
-          <div th:if="${app.user.id.equals(user.id)}">
-            <form th:action="@{/application/all}" method="post">
-              <input type="hidden" name="applicationId" th:value="${app.id}">
-              <input type="hidden" name="action" value="delete">
-              <button type="submit">Удалить</button>
-            </form>
+          <div sec:authorize="!hasRole('ADMIN')">
+            <div th:if="${app.user.id.equals(user.id)}">
+              <form th:action="@{/application/all}" method="post">
+                <input type="hidden" name="applicationId" th:value="${app.id}">
+                <input type="hidden" name="action" value="delete">
+                <button type="submit">Удалить</button>
+              </form>
+            </div>
           </div>
         </td>
 
@@ -62,7 +64,6 @@
           </td>
         </div>
       </div>
-
     </tr>
   </table>
   <div sec:authorize="isAuthenticated()">

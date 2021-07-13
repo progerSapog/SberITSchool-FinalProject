@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>confirm action</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <span th:if="${action.equals('delete')}">
+        <form th:action="@{/user/changeConfirm}" method="post">
+            <input type="hidden" name="userId" th:value="${user.id}">
+            <button type="submit">Удалить</button>
+        </form>
+        <form>
+            <button type="submit" formaction="/users/all">Click me</button>
+        </form>
+    </span>
+</body>
+</html>

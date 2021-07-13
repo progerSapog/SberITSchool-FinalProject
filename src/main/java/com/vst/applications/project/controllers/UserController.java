@@ -1,6 +1,5 @@
 package com.vst.applications.project.controllers;
 
-import com.vst.applications.project.entity.Role;
 import com.vst.applications.project.entity.User;
 import com.vst.applications.project.service.AcademicDegreeService;
 import com.vst.applications.project.service.DepartmentService;
@@ -57,15 +56,10 @@ public class UserController
     @GetMapping("/all")
     public String showAllUsers(Model model)
     {
-        List<User> allUsers = userService.findAll();
-        Role role = roleService.findByName("ROLE_ADMIN");
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("roleAdmin", role);
-        map.put("users", allUsers);
-
-        model.addAttribute("roleAdmin", role);
+        Map<String, Object> map = Map.ofEntries(
+                Map.entry("users", userService.findAll()),
+                Map.entry("role", roleService.findByName("ROLE_ADMIN"))
+        );
         model.mergeAttributes(map);
 
         return "allUsers";
@@ -172,5 +166,23 @@ public class UserController
 
         //Перенаправление в случае удачного измнения данных
         return "redirect:/logout";
+    }
+
+    @GetMapping("/changeRole")
+    public String changeRole(@RequestParam("userId") Long id, Model model)
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userForm", userService.findById(id).get());
+        map.put("roles", roleService.findAll());
+        model.mergeAttributes(map);
+
+        return "changeRole";
+    }
+
+    @PostMapping("/changeRole")
+    public String changeRole(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)
+    {
+        userService.save(userForm);
+        return "redirect:/user/all";
     }
 }

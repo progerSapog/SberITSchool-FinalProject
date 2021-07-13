@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<form th:action="@{/user/changeRole}" method="post">
+  <label>
+    <input type="hidden" th:field="${userForm.id}"/>
+  </label>
+
+  <h2>Данные профиля: </h2>
+  <div>
+    Имя: <span th:text="${userForm.firstName}"></span>
+    <label>
+      <input type="hidden" th:field="${userForm.firstName}"/>
+    </label>
+  </div>
+  <div>
+    Фамилия: <span th:text="${userForm.lastName}"></span>
+    <label>
+      <input type="hidden" th:field="${userForm.lastName}"/>
+    </label>
+  </div>
+  <div>
+    Отчество: <span th:text="${userForm.middleName}"></span>
+    <label>
+      <input type="hidden" th:field="${userForm.middleName}"/>
+    </label>
+  </div>
+  <div>
+    Email: <span th:text="${userForm.email}"></span>
+    <label>
+      <input type="hidden" th:field="${userForm.email}"/>
+    </label>
+  </div>
+  <div>
+    Кафедра: <span th:text="${userForm.department.name}"></span>
+    <label>
+      <input type="hidden" th:field="${userForm.department}"/>
+    </label>
+  </div>
+  <div>
+    Ученая степень: <span th:text="${userForm.academicDegree.name}"></span>
+    <label>
+      <input type="hidden" th:field="${userForm.academicDegree}"/>
+    </label>
+  </div>
+  <div>
+    Роль:
+    <label>
+      <select class="roles" th:field="${userForm.roles}">
+        <option th:each="role : ${roles}"
+                th:value="${role.id}"
+                th:text="${role.name}">
+        </option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="hidden" th:field="${userForm.password}"/>
+    </label>
+  </div>
+
+  <button type="submit">Сохранить</button>
+</form>
+
+<a href="/">Главная</a>
+</body>
+</html>

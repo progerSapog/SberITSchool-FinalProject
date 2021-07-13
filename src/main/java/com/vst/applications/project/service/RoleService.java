@@ -5,6 +5,8 @@ import com.vst.applications.project.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Сервис для взаимодействия с entity Role при помощи
  * RoleRepository
@@ -28,5 +30,10 @@ public class RoleService
     public Role findByName(String name)
     {
         return roleRepository.findByName(name);
+    }
+
+    public List<Role> findAll()
+    {
+        return roleRepository.findAll();
     }
 }
