@@ -24,7 +24,7 @@
       <th>Название</th>
       <th colspan="2">Действия</th>
     </tr>
-    <tr th:each="department: ${allCathedra}">
+    <tr th:each="department: ${allDepartments}">
       <td th:text="${department.name}"></td>
       <td>
         <form th:action="@{/department/update}">

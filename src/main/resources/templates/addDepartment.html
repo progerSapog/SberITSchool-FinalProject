@@ -20,16 +20,16 @@
     </div>
 
     <form th:action="@{/department/save}" method="post">
-        <div th:if="${cathedraForAdd.id != null}">
+        <div th:if="${departmentForAdd.id != null}">
             <label>
-                <input type="hidden" th:field="${cathedraForAdd.id}"/>
+                <input type="hidden" th:field="${departmentForAdd.id}"/>
             </label>
         </div>
         Название кафедры:
             <label>
-                <input type="text" th:field="${cathedraForAdd.name}" placeholder="Название кафедры" required minlength="2">
+                <input type="text" th:field="${departmentForAdd.name}" placeholder="Название кафедры" required minlength="2">
             </label>
-            <label class="form-field-error" th:if="${#fields.hasErrors('cathedraForAdd.name')}" th:errors="*{cathedraForAdd.name}" ></label>
+            <label class="form-field-error" th:if="${#fields.hasErrors('departmentForAdd.name')}" th:errors="*{departmentForAdd.name}" ></label>
         <input type="submit" value="OK">
     </form>
 </body>

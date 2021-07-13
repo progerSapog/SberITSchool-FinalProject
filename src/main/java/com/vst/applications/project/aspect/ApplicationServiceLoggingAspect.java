@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ApplicationServiceLoggingAspect
 {
-    private final Logger LOGGER = LoggerFactory.getLogger(CathedraServiceLoggingAspect.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentServiceLoggingAspect.class);
 
     /**
      * After advice метода findAll
@@ -36,7 +36,7 @@ public class ApplicationServiceLoggingAspect
      * After advice метода saveApplication
      * Логгирует получение сохранение записи в таблице APPLICATIONS
      * */
-    @After("execution(public  * com.vst.applications.project.service.ApplicationsService.saveApplication(..))")
+    @After("execution(public  * com.vst.applications.project.service.ApplicationsService.save(..))")
     public void AfterSaveApplication(JoinPoint joinPoint)
     {
         Object[] args = joinPoint.getArgs();
@@ -47,7 +47,7 @@ public class ApplicationServiceLoggingAspect
      * After advice метода deleteApplication
      * Логгирует получение удаление записи из таблицы APPLICATIONS
      * */
-    @After("execution(public  * com.vst.applications.project.service.ApplicationsService.deleteApplication(..))")
+    @After("execution(public  * com.vst.applications.project.service.ApplicationsService.delete(..))")
     public void AfterDeleteApplication(JoinPoint joinPoint)
     {
         Object[] args = joinPoint.getArgs();

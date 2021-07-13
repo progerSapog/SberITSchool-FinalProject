@@ -10,8 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Контроллер, отвечающий за взаимодействие с entity Cathedra
@@ -29,17 +27,15 @@ public class DepartmentController {
     /**
      * Обработка Get запроса /all.
      * Получение списка кафедр из БД, передача их на отображение
-     * jsp странице allCathedra, переход на данную страницу.
+     * странице allCathedra, переход на данную страницу.
      *
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
+     * @param model - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенправлен пользователь
      */
     @GetMapping("/all")
-    public String showAllCathedra(Model model)
+    public String showAllDepartments(Model model)
     {
-        List<Department> allCathedra = departmentService.findAll();
-        model.addAttribute("allCathedra", allCathedra);
-
+        model.addAttribute("allDepartments", departmentService.findAll());
         return "allDepartment";
     }
 
@@ -51,12 +47,11 @@ public class DepartmentController {
      *
      * @param cathedraId - id кафедры. @RequestParam - получение параметра из строки запроса
      * @param action     - строка с описанием действия. @RequestParam - получение параметра из строки запроса
-     *
      * @return перенравление по другому адресу
      * */
     @PostMapping("/all")
-    public String deleteCathedra(@RequestParam(defaultValue = "") Long cathedraId,
-                                 @RequestParam(defaultValue = "") String action)
+    public String deleteDepartment(@RequestParam(defaultValue = "") Long cathedraId,
+                                   @RequestParam(defaultValue = "") String action)
     {
         if (action.equals("delete"))
         {
@@ -72,12 +67,25 @@ public class DepartmentController {
      * переход на страницу addCathedra
      *
      * @param model - объект для передачи данных с сервера на html/jsp страницу.
-     * @return имя страницы, на которую будет перенправлен пользователь
+     * @return имя страницы, на которую будет перенаправлен пользователь
      * */
     @GetMapping("/add")
-    public String addNewCathedra(Model model)
+    public String addDepartment(Model model)
     {
-        model.addAttribute("cathedraForAdd", new DepartmentDTO());
+        model.addAttribute("departmentForAdd", new DepartmentDTO());
+        return "addDepartment";
+    }
+
+    /**
+     * Обработка Get запроса по /update.
+     * @param id    - id кафедры для изменения. @RequestParam - получение значения из строки запроса.
+     * @param model - объект для передачи данных с сервера на html страницу.
+     * @return имя страницы, на которую будет перенаправлен пользователь
+     * */
+    @GetMapping("/update")
+    public String updateDepartment(@RequestParam("departmentId") Long id, Model model)
+    {
+        departmentService.findById(id).ifPresent(department -> model.addAttribute("departmentForAdd", department));
         return "addDepartment";
     }
 
@@ -92,7 +100,7 @@ public class DepartmentController {
      * @return перенравление по другому адресу
      * */
     @PostMapping("/save")
-    public String saveCathedra(@Valid @ModelAttribute("cathedraForAdd") DepartmentDTO departmentDTO, BindingResult bindingResult)
+    public String saveDepartment(@Valid @ModelAttribute("departmentForAdd") DepartmentDTO departmentDTO, BindingResult bindingResult)
     {
         //Если Hibernate - validator нашел ошибки, то возвращаем пользователя
         //обратно на эту же страницу
@@ -103,21 +111,5 @@ public class DepartmentController {
 
         departmentService.save(new Department(departmentDTO.getId(), departmentDTO.getName()));
         return "redirect:/department/all";
-    }
-
-    /**
-     * Обработка Get запроса по /update. @RequestParam - получение значения из строки запроса.
-     * @param id    - id кафедры для изменения.
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
-     *
-     * @return перенравление по другому адресу
-     * */
-    @GetMapping("/update")
-    public String updateCathedra(@RequestParam("departmentId") Long id, Model model)
-    {
-        Optional<Department> cathedraOpt = departmentService.findById(id);
-        cathedraOpt.ifPresent(cathedra -> model.addAttribute("cathedraForAdd", cathedra));
-
-        return "addDepartment";
     }
 }

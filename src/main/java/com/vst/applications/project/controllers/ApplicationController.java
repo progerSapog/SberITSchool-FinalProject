@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Контроллер, отвечающий за взаимодействие с entity Applications
@@ -32,7 +33,7 @@ public class ApplicationController
     /**
      * Обработка get запроса /all.
      * Получение списка заявок из БД, передача их на отображение
-     * jsp странице allApplications, переход на данную страницу.
+     * странице allApplications, переход на данную страницу.
      *
      * @param model - объект для передачи данных с сервера на html/jsp страницу.
      * @return имя страницы, на которую будет перенаправлен пользователь
@@ -41,11 +42,10 @@ public class ApplicationController
     public String showAllApplications(@AuthenticationPrincipal User user, Model model)
     {
         Map<String, Object> map = new HashMap<>();
-        map.put("user", user);
         map.put("allApplications", applicationsService.findAll());
+        if (user != null) map.put("user", user);
 
         model.mergeAttributes(map);
-
         return "allApplications";
     }
 
@@ -57,17 +57,14 @@ public class ApplicationController
      *
      * @param applicationId - id заявки. @RequestParam - получение параметра из строки запроса
      * @param action        - строка с описанием действия. @RequestParam - получение параметра из строки запроса
-     *
-     * @return имя страницы, на которую будет перенправлен пользователь
+     * @return перенаправление пользователя по данному адресу
      * */
     @PostMapping("/all")
     public String deleteApplication(@RequestParam(defaultValue = "") Long applicationId,
                                     @RequestParam(defaultValue = "") String action)
     {
-        if (action.equals("delete"))
-        {
-            applicationsService.deleteApplication(applicationId);
-        }
+        if (action.equals("delete")) applicationsService.delete(applicationId);
+
         return "redirect:/application/all";
     }
 
@@ -77,7 +74,7 @@ public class ApplicationController
      * Перенаправление на данную страницу
      *
      * @param model - объект для передачи данных с сервера на html/jsp страницу.
-     * @return имя страницы, на которую будет перенправлен пользователь
+     * @return имя страницы, на которую будет перенаправлен пользователь
      * */
     @GetMapping("/add")
     public String addApplications(Model model)
@@ -90,11 +87,11 @@ public class ApplicationController
      * Обработка Post запроса по /add.
      *
      * @param  appForm - заполненый объект entity Applications
-     *                    @Valid отвечает за валидацию полей entity Applications при помощи Hibernate - validator
-     *                    @ModelAttribute означает, что данный параметр функии мы должны получить из модели,
-     *                    отправленной с jsp/html страницы после нажатия submit
+     *                   @Valid отвечает за валидацию полей entity Applications при помощи Hibernate - validator
+     *                   @ModelAttribute означает, что данный параметр функии мы должны получить из модели,
+     *                   отправленной с html страницы после нажатия submit
      * @param bindingResult - интерфейс регистрации ошибок, обнаруженных Hibernate - validator
-     * @param model         - объект для передачи данных с сервера на html/jsp страницу.
+     * @param model         - объект для передачи данных с сервера на html страницу.
      *
      * @return имя страницы, на которую будет перенправлен пользователь
      * */
@@ -103,6 +100,8 @@ public class ApplicationController
                                  @Valid @ModelAttribute("appForm") ApplicationsDTO appForm,
                                  BindingResult bindingResult, Model model)
     {
+        Applications applications;
+
         //Если Hibernate - validator нашел ошибки, то возвращаем пользователя
         //обратно на эту же страницу
         if (bindingResult.hasErrors())
@@ -110,12 +109,20 @@ public class ApplicationController
             return "addApplication";
         }
 
-        Applications applications = new Applications(null, appForm.getAudienceNumber(), appForm.getText());
+        if (appForm.getId() == null)
+        {
+            applications = new Applications(null, appForm.getAudienceNumber(), appForm.getText());
+        }
+        else
+        {
+            applications = new Applications(appForm.getId(), appForm.getAudienceNumber(), appForm.getText());
+        }
         applications.setUser(user);
+
 
         //Если не удалось сохранить данные, то возвращаем пользователя на страницу регистрации,
         //добавив в модель сообщение об том, что такой пользователь уже есть.
-        if (!applicationsService.saveApplication(applications))
+        if (!applicationsService.save(applications))
         {
             model.addAttribute("appError", "При создании заявки произошла ошибка");
             return "addApplication";
@@ -123,5 +130,19 @@ public class ApplicationController
 
         //Перенаправление в случае удачной регистрации
         return "redirect:/application/all";
+    }
+
+
+    /**
+     * Обработка Get запроса по /update.
+     * @param id    - id кафедры для изменения.  @RequestParam - получение значения из строки запроса.
+     * @param model - объект для передачи данных с сервера на html страницу.
+     * @return перенравление по другому адресу
+     * */
+    @GetMapping("/update")
+    public String updateCathedra(@RequestParam("appId") Long id, Model model)
+    {
+        applicationsService.findById(id).ifPresent(app -> model.addAttribute("appForm", app));
+        return "addApplication";
     }
 }

@@ -22,9 +22,9 @@ import java.util.Optional;
  * */
 @Component
 @Aspect
-public class CathedraServiceLoggingAspect
+public class DepartmentServiceLoggingAspect
 {
-    private final Logger LOGGER = LoggerFactory.getLogger(CathedraServiceLoggingAspect.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentServiceLoggingAspect.class);
 
     /**
      * After advice метода findAll
