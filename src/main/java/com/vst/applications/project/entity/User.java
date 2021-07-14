@@ -67,8 +67,8 @@ public class User implements UserDetails
 
     /*  uni-directional many to one association with entity Cathedra */
     @ManyToOne
-    @JoinColumn(name = "cathedra_id")
-    private Cathedra cathedra;
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     /*  bi-directional many to many association with entity Role
     JoinTable - USER_ROLE */
@@ -220,14 +220,14 @@ public class User implements UserDetails
         this.academicDegree = academicDegree;
     }
 
-    public Cathedra getCathedra()
+    public Department getDepartment()
     {
-        return cathedra;
+        return department;
     }
 
-    public void setCathedra(Cathedra cathedra)
+    public void setDepartment(Department department)
     {
-        this.cathedra = cathedra;
+        this.department = department;
     }
 
     public Set<Role> getRoles()

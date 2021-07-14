@@ -1,9 +1,8 @@
 package com.vst.applications.project.controllers;
 
-import com.vst.applications.project.entity.Role;
 import com.vst.applications.project.entity.User;
 import com.vst.applications.project.service.AcademicDegreeService;
-import com.vst.applications.project.service.CathedraService;
+import com.vst.applications.project.service.DepartmentService;
 import com.vst.applications.project.service.RoleService;
 import com.vst.applications.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class UserController
     private RoleService roleService;
 
     @Autowired
-    private CathedraService cathedraService;
+    private DepartmentService departmentService;
 
     @Autowired
     private AcademicDegreeService academicDegreeService;
@@ -57,15 +56,10 @@ public class UserController
     @GetMapping("/all")
     public String showAllUsers(Model model)
     {
-        List<User> allUsers = userService.findAll();
-        Role role = roleService.findByName("ROLE_ADMIN");
-
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("roleAdmin", role);
-        map.put("users", allUsers);
-
-        model.addAttribute("roleAdmin", role);
+        Map<String, Object> map = Map.ofEntries(
+                Map.entry("users", userService.findAll()),
+                Map.entry("role", roleService.findByName("ROLE_ADMIN"))
+        );
         model.mergeAttributes(map);
 
         return "allUsers";
@@ -82,12 +76,12 @@ public class UserController
      * @return имя страниц
      * */
     @PostMapping("/all")
-    public String deleteUser(@RequestParam(defaultValue = "") Long userId,
+    public String deleteUser(@RequestParam(defaultValue = "") String userId,
                              @RequestParam(defaultValue = "") String action)
     {
         if (action.equals("delete"))
         {
-            userService.deleteUser(userId);
+            userService.deleteUser(Long.parseLong(userId));
         }
 
         return "redirect:/user/all";
@@ -107,7 +101,7 @@ public class UserController
     {
         Map<String, Object> map = new HashMap<>();
         map.put("userForm", user);
-        map.put("cathedraList", cathedraService.findAll());
+        map.put("cathedraList", departmentService.findAll());
         map.put("academicDegreeList", academicDegreeService.findAll());
 
         //Чтобы форма с паролем была изначальна пуста, устнаваливаем пароль = null
@@ -135,8 +129,8 @@ public class UserController
     {
         Optional<User> userFromDB = userService.findById(userForm.getId());
 
-        Map<String, List> map = new HashMap<>();
-        map.put("cathedraList", cathedraService.findAll());
+        Map<String, List<?>> map = new HashMap<>();
+        map.put("cathedraList", departmentService.findAll());
         map.put("academicDegreeList", academicDegreeService.findAll());
         model.mergeAttributes(map);
 
@@ -172,5 +166,23 @@ public class UserController
 
         //Перенаправление в случае удачного измнения данных
         return "redirect:/logout";
+    }
+
+    @GetMapping("/changeRole")
+    public String changeRole(@RequestParam("userId") Long id, Model model)
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userForm", userService.findById(id).get());
+        map.put("roles", roleService.findAll());
+        model.mergeAttributes(map);
+
+        return "changeRole";
+    }
+
+    @PostMapping("/changeRole")
+    public String changeRole(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)
+    {
+        userService.save(userForm);
+        return "redirect:/user/all";
     }
 }

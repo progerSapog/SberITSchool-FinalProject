@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h2>Вход в систему</h2>
+<div>
+    <form method="POST" action="/login">
+        <label>
+            <input name="email" type="text" placeholder="email"/>
+        </label>
+        <label>
+            <input name="password" type="password" placeholder="password"/>
+        </label>
+        <button type="submit">Войти</button>
+        <h4><a href="/registration">Зарегистрироваться</a></h4>
+    </form>
+</div>
+</body>
+</html>

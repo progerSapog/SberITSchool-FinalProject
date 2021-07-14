@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>new application</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+  <div sec:authorize="isAuthenticated()">
+    <h3>
+      <a href="/user/update">
+        <label th:text="${#authentication.getPrincipal().getUsername()}"></label>
+      </a>
+    </h3>
+    <h4>
+      <a href="/logout">Выйти</a>
+    </h4>
+  </div>
+  <form th:action="@{/application/add}" method="post">
+    <div th:if="${appForm.id != null}">
+      <label>
+        <input type="hidden" th:field="${appForm.id}"/>
+      </label>
+    </div>
+    <div>
+      <label>
+        Номер аудитории:
+        <input type="text" th:field="${appForm.audienceNumber}" required pattern="[0-6][0-5]\d{2}"/>
+      </label>
+      <label class="form-field-error" th:if="${#fields.hasErrors('appForm.audienceNumber')}" th:errors="*{appForm.audienceNumber}"></label>
+    </div>
+    <div>
+      <label>
+        Текст заявки:
+        <textarea type="text" th:field="${appForm.text}"></textarea>
+      </label>
+      <span th:if="${appError != null}">
+        <label class="form-field-error" th:text="${appError}"></label>
+      </span>
+    </div>
+    <div th:if="${appForm.id != null}">
+      <button type="submit" onclick="return confirm('Вы уверены?')">Изменить</button>
+    </div>
+    <div th:unless="${appForm.id != null}">
+      <button type="submit">Добавить</button>
+    </div>
+  </form>
+
+</body>
+</html>

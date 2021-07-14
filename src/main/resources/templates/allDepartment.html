@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Departments</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+  <h2>Список кафедр</h2>
+  <div sec:authorize="isAuthenticated()">
+    <h3>
+      <a href="/user/update">
+        <label th:text="${#authentication.getPrincipal().getUsername()}"></label>
+      </a>
+    </h3>
+    <h4>
+      <a href="/logout">Выйти</a>
+    </h4>
+  </div>
+  <table>
+    <tr>
+      <th>Название</th>
+      <th colspan="2">Действия</th>
+    </tr>
+    <tr th:each="department: ${allDepartments}">
+      <td th:text="${department.name}"></td>
+      <td>
+        <form th:action="@{/department/update}">
+          <input type="hidden" name="departmentId" th:value="${department.id}">
+          <button>Изменить</button>
+        </form>
+      </td>
+      <td>
+        <form th:action="@{/department/all}" method="post">
+          <input type="hidden" name="departmentId" th:value="${department.id}">
+          <input type="hidden" name="action" value="delete">
+          <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+  <div sec:authorize="isAuthenticated()">
+    <a href="/department/add">Добавить кафедру</a>
+  </div>
+  <a href="/">Главная</a>
+
+</body>
+</html>

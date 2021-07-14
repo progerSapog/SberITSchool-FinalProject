@@ -52,7 +52,7 @@ class ApplicationsServiceTest
     void saveApplicationsTest()
     {
         Applications applications = new Applications();
-        assertTrue(applicationsService.saveApplication(applications));
+        assertTrue(applicationsService.save(applications));
         Mockito.verify(applicationsRepository, Mockito.times(1)).save(applications);
     }
 }

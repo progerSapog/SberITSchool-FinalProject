@@ -3,6 +3,8 @@ package com.vst.applications.project.repository;
 import com.vst.applications.project.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * Интерфейс, использующий JPA Entity для взаимодействия с Entity
  * Role
@@ -18,4 +20,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>
      * @return роль с переданным именем.
      * */
     Role findByName(String name);
+
+    @Override
+    List<Role> findAll();
 }

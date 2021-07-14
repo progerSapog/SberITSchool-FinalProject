@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Сервис для взаимодействия с entity Applications при помощи
@@ -38,7 +39,7 @@ public class ApplicationsService
      * @param application - заявка, которую необходимо внести в таблицу
      * @return true, если заявка успешно добавлена в таблицу
      * */
-    public boolean saveApplication(Applications application)
+    public boolean save(Applications application)
     {
         //сохранение заявки
         applicationsRepository.save(application);
@@ -49,11 +50,16 @@ public class ApplicationsService
      * Удаление заявки из БД, по id.
      *
      * @param id - id записи, которую необходимо найти. */
-    public void deleteApplication(Long id)
+    public void delete(Long id)
     {
         if (applicationsRepository.findById(id).isPresent())
         {
             applicationsRepository.deleteById(id);
         }
+    }
+
+    public Optional<Applications> findById(Long id)
+    {
+        return applicationsRepository.findById(id);
     }
 }

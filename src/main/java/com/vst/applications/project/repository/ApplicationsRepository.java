@@ -4,6 +4,7 @@ import com.vst.applications.project.entity.Applications;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Интерфейс, использующий JPA Entity для взаимодействия с Entity
@@ -36,4 +37,7 @@ public interface ApplicationsRepository extends JpaRepository<Applications, Long
      * */
     @Override
     void deleteById(Long id);
+
+    @Override
+    Optional<Applications> findById(Long aLong);
 }

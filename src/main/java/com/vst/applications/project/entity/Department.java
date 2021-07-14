@@ -9,26 +9,26 @@ import java.util.Set;
  * для всех полей и иметь конструтор по умолчанию.
  * */
 @Entity
-@Table(name = "CATHEDRA")
-public class Cathedra
+@Table(name = "DEPARTMENT")
+public class Department
 {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_cathedra_table")
-    @SequenceGenerator(name = "sq_cathedra_table", allocationSize = 1, sequenceName = "sq_cathedra_table")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_department_table")
+    @SequenceGenerator(name = "sq_department_table", allocationSize = 1, sequenceName = "sq_department_table")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "cathedra")
+    @OneToMany(mappedBy = "department")
     Set<User> users;
 
-    public Cathedra()
+    public Department()
     {
     }
 
-    public Cathedra(Long id, String name)
+    public Department(Long id, String name)
     {
         this.id = id;
         this.name = name;

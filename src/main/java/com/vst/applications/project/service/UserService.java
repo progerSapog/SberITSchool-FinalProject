@@ -119,6 +119,11 @@ public class UserService implements UserDetailsService
         return true;
     }
 
+    public void save(User user)
+    {
+        userRepository.save(user);
+    }
+
     /**
      * Получение пользователей - всех записей из таблицы
      * USERS

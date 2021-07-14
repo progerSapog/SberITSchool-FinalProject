@@ -1,7 +1,6 @@
 package com.vst.applications.project.repository;
 
 import com.vst.applications.project.entity.AcademicDegree;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public interface AcademicDegreeRepository extends JpaRepository<AcademicDegree, 
      *
      * @return - список объектов - записей данного entity
      * */
-    @NotNull
     @Override
     List<AcademicDegree> findAll();
 }

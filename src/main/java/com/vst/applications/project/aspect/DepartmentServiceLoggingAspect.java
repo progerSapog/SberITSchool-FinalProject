@@ -1,7 +1,7 @@
 package com.vst.applications.project.aspect;
 
-import com.vst.applications.project.entity.Cathedra;
-import com.vst.applications.project.service.CathedraService;
+import com.vst.applications.project.entity.Department;
+import com.vst.applications.project.service.DepartmentService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -18,19 +18,19 @@ import java.util.Optional;
  * Используется для Логгирования
  *
  * @see Logger
- * @see CathedraService
+ * @see DepartmentService
  * */
 @Component
 @Aspect
-public class CathedraServiceLoggingAspect
+public class DepartmentServiceLoggingAspect
 {
-    private final Logger LOGGER = LoggerFactory.getLogger(CathedraServiceLoggingAspect.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentServiceLoggingAspect.class);
 
     /**
      * After advice метода findAll
      * Логгирует получение всех записей из таблицы
      * */
-    @After("execution(public  * com.vst.applications.project.service.CathedraService.findAll())")
+    @After("execution(public  * com.vst.applications.project.service.DepartmentService.findAll())")
     public void AfterFindAll()
     {
         LOGGER.info("Получение всех записей таблицы CATHEDRA");
@@ -40,7 +40,7 @@ public class CathedraServiceLoggingAspect
      * After advice метода deleteCathedra
      * Логгирует удаление записи из таблицы CATHEDRA
      * */
-    @After("execution(public  * com.vst.applications.project.service.CathedraService.deleteCathedra(..))")
+    @After("execution(public  * com.vst.applications.project.service.DepartmentService.delete(..))")
     public void AfterDeleteCathedra(JoinPoint joinPoint)
     {
         Object[] args = joinPoint.getArgs();
@@ -51,23 +51,23 @@ public class CathedraServiceLoggingAspect
      * After advice метода saveCathedra
      * Логгирует сохранение записи в таблице CATHEDRA
      * */
-    @After("execution(public  * com.vst.applications.project.service.CathedraService.saveCathedra(..))")
+    @After("execution(public  * com.vst.applications.project.service.DepartmentService.save(..))")
     public void AfterSaveCathedra(JoinPoint joinPoint)
     {
         Object[] args = joinPoint.getArgs();
-        LOGGER.info("Сохранение в таблицу кафедры " + ((Cathedra)args[0]).getName() + " " + ((Cathedra)args[0]).getId());
+        LOGGER.info("Сохранение в таблицу кафедры " + ((Department)args[0]).getName() + " " + ((Department)args[0]).getId());
     }
 
     /**
      * After advice метода saveCathedra
      * Логгирует изменение записи в таблице CATHEDRA
      * */
-    @Around("execution(public * com.vst.applications.project.service.CathedraService.findById(..))")
+    @Around("execution(public * com.vst.applications.project.service.DepartmentService.findById(..))")
     public Object AroundFindById(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
         Object result = joinPoint.proceed();
 
-        if (((Optional<Cathedra>)result).isPresent())
+        if (((Optional<Department>)result).isPresent())
         {
             LOGGER.info("Выбор записи № " + args[0] + " из таблицы CATHEDRA");
         }

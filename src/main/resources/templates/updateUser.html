@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+  <form th:action="@{/user/update}" method="post">
+    <label>
+      <input type="hidden" th:field="${userForm.id}"/>
+    </label>
+
+    <h2>Данные профиля: </h2>
+    <div>
+      <label>
+        <input type="text" placeholder="Имя" th:field="${userForm.firstName}" required minlength="2" maxlength="50"/>
+      </label>
+      <label class="form-field-error" th:if="${#fields.hasErrors('userForm.firstName')}" th:errors="*{userForm.firstName}" ></label>
+    </div>
+    <div>
+      <label>
+        <input type="text" placeholder="Фамилия" th:field="${userForm.lastName}" required minlength="2" maxlength="50"/>
+      </label>
+      <label class="form-field-error" th:if="${#fields.hasErrors('userForm.lastName')}" th:errors="*{userForm.lastName}"></label>
+    </div>
+    <div>
+      <label>
+        <input type="text" placeholder="Отчество" th:field="${userForm.middleName}" required minlength="2" maxlength="50"/>
+      </label>
+      <label class="form-field-error" th:if="${#fields.hasErrors('userForm.middleName')}" th:errors="*{userForm.middleName}"></label>
+    </div>
+    <div>
+      <label>
+        <input type="text" placeholder="e-mail" th:field="${userForm.email}" pattern="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"/>
+      </label>
+      <label class="form-field-error"  th:if="${#fields.hasErrors('userForm.email')}" th:errors="*{userForm.email}"></label>
+      <span th:if="${emailChangeError != null}">
+        <label class="form-field-error" th:text="${emailChangeError}"></label>
+      </span>
+    </div>
+    <br>
+    <div>
+      Выберите кафедру:
+      <label>
+        <select class="department" th:field="${userForm.department}">
+          <option th:each="department : ${cathedraList}"
+                  th:value="${department.id}"
+                  th:text="${department.name}">
+          </option>
+        </select>
+      </label>
+    </div>
+    <div>
+      Выберите ученую степень:
+      <label>
+        <select class="department" th:field="${userForm.academicDegree}">
+          <option th:each="academicDegree : ${academicDegreeList}"
+                  th:value="${academicDegree.id}"
+                  th:text="${academicDegree.name}">
+          </option>
+        </select>
+      </label>
+    </div>
+    <br>
+    <div>
+      <label>
+        <input type="password" placeholder="Old password" th:field="${userForm.password}" required minlength="4" maxlength="50"/>
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="password" placeholder="New password" th:field="${userForm.passwordToChange}"/>
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="password" placeholder="New password confirm" th:field="${userForm.passwordConfirm}"/>
+      </label>
+      <span th:if="${passwordError != null}">
+        <label class="form-field-error" th:text="${passwordError}"></label>
+      </span>
+    </div>
+
+    <button type="submit">Сохранить</button>
+  </form>
+
+  <a href="/">Главная</a>
+</body>
+</html>

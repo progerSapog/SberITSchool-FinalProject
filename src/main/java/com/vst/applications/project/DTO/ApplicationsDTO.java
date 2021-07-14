@@ -17,7 +17,7 @@ public class ApplicationsDTO
 
     @NotNull
     @Digits(integer = 4, fraction = 0)
-    private int audienceNumber;
+    private Integer audienceNumber;
 
     @NotBlank
     private String text;
@@ -34,11 +34,11 @@ public class ApplicationsDTO
         this.id = id;
     }
 
-    public int getAudienceNumber() {
+    public Integer getAudienceNumber() {
         return audienceNumber;
     }
 
-    public void setAudienceNumber(int audienceNumber) {
+    public void setAudienceNumber(Integer audienceNumber) {
         this.audienceNumber = audienceNumber;
     }
 

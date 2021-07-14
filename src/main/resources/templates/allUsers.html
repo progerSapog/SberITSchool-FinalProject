@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+  <div sec:authorize="isAuthenticated()">
+    <h3>
+      <a href="/user/update">
+        <label th:text="${#authentication.getPrincipal().getUsername()}"></label>
+      </a>
+    </h3>
+
+    <h4>
+      <a href="/logout">Выйти</a>
+    </h4>
+  </div>
+
+  <h2>Список пользователей</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Фамилия</th>
+      <th>Отчество</th>
+      <th>Ученая степень</th>
+      <th>Кафедра</th>
+      <th>Почта</th>
+      <th colspan="3">Роль</th>
+    </tr>
+    <tr th:each="user: ${users}">
+      <td><span th:text="${user.id}"></span></td>
+      <td><span th:text="${user.firstName}"></span></td>
+      <td><span th:text="${user.lastName}"></span></td>
+      <td><span th:text="${user.middleName}"></span></td>
+      <td><span th:text="${user.academicDegree.name}"></span></td>
+      <td>
+        <span th:if="${user.department == null}">-</span>
+        <span th:unless="${user.department == null}">
+          <span th:text="${user.department.name}"></span>
+        </span>
+      </td>
+      <td><span th:text="${user.email}"></span></td>
+      <td>
+        <span th:each="role : ${user.roles}"
+              th:text="${role.name}"></span>
+      </td>
+      <div th:if="${!user.roles.contains(role)}">
+        <td>
+          <form th:action="@{/user/changeRole}" method="get">
+            <input type="hidden" name="userId" th:value="${user.id}">
+            <input type="hidden" name="action" value="changeRole">
+            <button type="submit">Изменить</button>
+          </form>
+        </td>
+        <td>
+          <form th:action="@{/user/all}" method="post">
+            <input type="hidden" name="userId" th:value="${user.id}">
+            <input type="hidden" name="action" value="delete">
+            <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
+          </form>
+        </td>
+      </div>
+    </tr>
+
+  </table>
+  <br>
+  <a href="/">Главная</a>
+
+</body>
+</html>

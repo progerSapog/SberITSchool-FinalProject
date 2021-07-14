@@ -1,8 +1,8 @@
 package com.vst.applications.project.controllers;
 
-import com.vst.applications.project.DTO.CathedraDTO;
-import com.vst.applications.project.entity.Cathedra;
-import com.vst.applications.project.service.CathedraService;
+import com.vst.applications.project.DTO.DepartmentDTO;
+import com.vst.applications.project.entity.Department;
+import com.vst.applications.project.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,37 +10,33 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Контроллер, отвечающий за взаимодействие с entity Cathedra
  *
- * @see Cathedra
- * @see CathedraService
+ * @see Department
+ * @see DepartmentService
  * */
 @Controller
-@RequestMapping("/cathedra")
-public class CathedraController {
+@RequestMapping("/department")
+public class DepartmentController {
     //DI CathedraService в данный контроллер
     @Autowired
-    private CathedraService cathedraService;
+    private DepartmentService departmentService;
 
     /**
      * Обработка Get запроса /all.
      * Получение списка кафедр из БД, передача их на отображение
-     * jsp странице allCathedra, переход на данную страницу.
+     * странице allCathedra, переход на данную страницу.
      *
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
+     * @param model - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенправлен пользователь
      */
     @GetMapping("/all")
-    public String showAllCathedra(Model model)
+    public String showAllDepartments(Model model)
     {
-        List<Cathedra> allCathedra = cathedraService.findAll();
-        model.addAttribute("allCathedra", allCathedra);
-
-        return "allCathedra";
+        model.addAttribute("allDepartments", departmentService.findAll());
+        return "allDepartment";
     }
 
     /**
@@ -51,19 +47,18 @@ public class CathedraController {
      *
      * @param cathedraId - id кафедры. @RequestParam - получение параметра из строки запроса
      * @param action     - строка с описанием действия. @RequestParam - получение параметра из строки запроса
-     *
      * @return перенравление по другому адресу
      * */
     @PostMapping("/all")
-    public String deleteCathedra(@RequestParam(defaultValue = "") Long cathedraId,
-                                 @RequestParam(defaultValue = "") String action)
+    public String deleteDepartment(@RequestParam(defaultValue = "") Long departmentId,
+                                   @RequestParam(defaultValue = "") String action)
     {
         if (action.equals("delete"))
         {
-            cathedraService.deleteCathedra(cathedraId);
+            departmentService.delete(departmentId);
         }
 
-        return "redirect:/cathedra/all";
+        return "redirect:/department/all";
     }
 
     /**
@@ -72,19 +67,32 @@ public class CathedraController {
      * переход на страницу addCathedra
      *
      * @param model - объект для передачи данных с сервера на html/jsp страницу.
-     * @return имя страницы, на которую будет перенправлен пользователь
+     * @return имя страницы, на которую будет перенаправлен пользователь
      * */
     @GetMapping("/add")
-    public String addNewCathedra(Model model)
+    public String addDepartment(Model model)
     {
-        model.addAttribute("cathedraForAdd", new CathedraDTO());
-        return "addCathedra";
+        model.addAttribute("departmentForAdd", new DepartmentDTO());
+        return "addDepartment";
+    }
+
+    /**
+     * Обработка Get запроса по /update.
+     * @param id    - id кафедры для изменения. @RequestParam - получение значения из строки запроса.
+     * @param model - объект для передачи данных с сервера на html страницу.
+     * @return имя страницы, на которую будет перенаправлен пользователь
+     * */
+    @GetMapping("/update")
+    public String updateDepartment(@RequestParam("departmentId") Long id, Model model)
+    {
+        departmentService.findById(id).ifPresent(department -> model.addAttribute("departmentForAdd", department));
+        return "addDepartment";
     }
 
     /**
      * Обработка Post запроса по /add.
      *
-     * @param cathedraDTO - заполненый объект dto Cathedra
+     * @param departmentDTO - заполненый объект dto Cathedra
      *                        @Valid отвечает за валидацию полей при помощи Hibernate - validator
      *                        @ModelAttribute означает, что данный параметр функии мы должны получить из модели,
      *                        отправленной с jsp/html страницы после нажатия submit
@@ -92,32 +100,16 @@ public class CathedraController {
      * @return перенравление по другому адресу
      * */
     @PostMapping("/save")
-    public String saveCathedra(@Valid @ModelAttribute("cathedraForAdd") CathedraDTO cathedraDTO, BindingResult bindingResult)
+    public String saveDepartment(@Valid @ModelAttribute("departmentForAdd") DepartmentDTO departmentDTO, BindingResult bindingResult)
     {
         //Если Hibernate - validator нашел ошибки, то возвращаем пользователя
         //обратно на эту же страницу
         if (bindingResult.hasErrors())
         {
-            return "addCathedra";
+            return "addDepartment";
         }
 
-        cathedraService.saveCathedra(new Cathedra(cathedraDTO.getId(), cathedraDTO.getName()));
-        return "redirect:/cathedra/all";
-    }
-
-    /**
-     * Обработка Get запроса по /update. @RequestParam - получение значения из строки запроса.
-     * @param id    - id кафедры для изменения.
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
-     *
-     * @return перенравление по другому адресу
-     * */
-    @GetMapping("/update")
-    public String updateCathedra(@RequestParam("cathedraId") Long id, Model model)
-    {
-        Optional<Cathedra> cathedraOpt = cathedraService.findById(id);
-        cathedraOpt.ifPresent(cathedra -> model.addAttribute("cathedraForAdd", cathedra));
-
-        return "addCathedra";
+        departmentService.save(new Department(departmentDTO.getId(), departmentDTO.getName()));
+        return "redirect:/department/all";
     }
 }

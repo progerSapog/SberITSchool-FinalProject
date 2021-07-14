@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Applications</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+  <div sec:authorize="isAuthenticated()">
+    <h3>
+      <a href="/user/update">
+        <label th:text="${#authentication.getPrincipal().getUsername()}"></label>
+      </a>
+    </h3>
+    <h4>
+      <a href="/logout">Выйти</a>
+    </h4>
+  </div>
+  <table>
+    <tr>
+      <th>Номер аудитории</th>
+      <th>Текст заявки</th>
+      <th colspan="2">Автор</th>
+      <sec:authorize access="isAuthenticated()">
+        <th colspan="2">Действия</th>
+      </sec:authorize>
+    </tr>
+
+    <tr th:each="app: ${allApplications}">
+      <td><span th:text="${app.audienceNumber}"></span></td>
+      <td><span th:text="${app.text}"></span></td>
+      <td><span th:text="${app.user.firstName}"></span></td>
+      <td><span th:text="${app.user.lastName}"></span></td>
+
+      <div th:if="${user != null}">
+        <td>
+          <div sec:authorize="hasRole('ADMIN')">
+            <form th:action="@{/application/all}" method="post">
+              <input type="hidden" name="applicationId" th:value="${app.id}">
+              <input type="hidden" name="action" value="delete">
+              <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
+            </form>
+          </div>
+
+          <div sec:authorize="!hasRole('ADMIN')">
+            <div th:if="${app.user.id.equals(user.id)}">
+              <form action="/application/all" method="post">
+                <input type="hidden" name="applicationId" th:value="${app.id}">
+                <input type="hidden" name="action" value="delete">
+                <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
+              </form>
+            </div>
+          </div>
+        </td>
+
+        <div th:if="${app.user.id.equals(user.id)}">
+          <td>
+            <form th:action="@{/application/update}">
+              <input type="hidden" name="appId" th:value="${app.id}">
+              <button>Изменить</button>
+            </form>
+          </td>
+        </div>
+      </div>
+    </tr>
+  </table>
+  <div sec:authorize="isAuthenticated()">
+    <a href="/application/add">Добавить заявку</a>
+  </div>
+  <a href="/">Главная</a>
+</body>
+</html>
