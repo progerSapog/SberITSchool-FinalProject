@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <!-- Appender вывода в консоль -->
+        <Console name="console writer" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%style{%d{dd MMM yyyy HH:mm:ss}}{7} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" />
+        </Console>
+
+        <!-- Appender вывода в файл -->
+        <RollingFile name="file writer"
+                     filePattern="./logs/$${date:yyyy-MM}/logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- Перезапись на старте, при новых сутках или при истечении 5MB памяти -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="5 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- Логирование от уровня INFO -->
+        <Root level="info">
+            <AppenderRef ref="console writer" />
+            <AppenderRef ref="file writer" />
+        </Root>
+    </Loggers>
+</Configuration>
