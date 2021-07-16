@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 /**
- * Класс объектов Role - таблица БД ROLE
+ * Класс объектов RoleDTO - таблица БД ROLE
  * Для работы с БД entity должен реализовывать getters и setters
  * для всех полей и иметь конструтор по умолчанию.
  *
@@ -26,9 +26,7 @@ public class Role implements GrantedAuthority
     @SequenceGenerator(name = "sq_role_table", allocationSize = 1, sequenceName = "sq_role_table")
     private Long id;
 
-    @NotNull
     @Column(name = "name")
-    @Size(min = 2, message = "Неверная роль")
     private String name;
 
     /*  bi-directional association с entity User

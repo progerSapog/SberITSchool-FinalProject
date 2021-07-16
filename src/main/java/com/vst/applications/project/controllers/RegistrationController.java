@@ -1,5 +1,6 @@
 package com.vst.applications.project.controllers;
 
+import com.vst.applications.project.DTO.UserDTO;
 import com.vst.applications.project.entity.User;
 import com.vst.applications.project.service.AcademicDegreeService;
 import com.vst.applications.project.service.DepartmentService;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,24 +44,23 @@ public class RegistrationController
      * в выпадающих списках.
      * Перенаправление на данную страницу
      *
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
+     * @param model - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенправлен пользователь
      * */
     @GetMapping
     public String registration(Model model)
     {
-        Map<String, List<?>> map = new HashMap<>();
-        map.put("cathedraList", departmentService.findAll());
-        map.put("academicDegreeList", academicDegreeService.findAll());
 
         /* Добавление в модель пустого User позволит при заполнении формы получить не
            n-ое кол-во полей для обработки, а сразу заполненый объект класса User */
-        model.addAttribute("userForm", new User());
+        Map<String, Object> map = Map.ofEntries(
+                Map.entry("departmentList", departmentService.findAll()),
+                Map.entry("academicDegreeList", academicDegreeService.findAll()),
+                Map.entry("userForm", new UserDTO())
 
-        //Добавление к модели map, содержащей списки
+        );
+
         model.mergeAttributes(map);
-
-//        return "registration";
         return "registration";
     }
 
@@ -82,11 +80,12 @@ public class RegistrationController
      * @return имя страницы, на которую будет перенправлен пользователь
      * */
     @PostMapping
-    public String addNewUser(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)
+    public String addNewUser(@Valid @ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult, Model model)
     {
-        Map<String, List> map = new HashMap<>();
-        map.put("cathedraList", departmentService.findAll());
-        map.put("academicDegreeList", academicDegreeService.findAll());
+        Map<String, Object> map = Map.ofEntries(
+                Map.entry("departmentList", departmentService.findAll()),
+                Map.entry("academicDegreeList", academicDegreeService.findAll())
+        );
         model.mergeAttributes(map);
 
         //Если Hibernate - validator нашел ошибки, то возвращаем пользователя
@@ -104,9 +103,16 @@ public class RegistrationController
             return "registration";
         }
 
+        //Если все проверки пройдены успешно, то переписываем данные из DTO
+        //в объект класса User
+        User user = new User(userForm.getId(), userForm.getEmail(), userForm.getPassword(),
+                userForm.getPasswordConfirm(), userForm.getPasswordToChange(), userForm.getFirstName(),
+                userForm.getLastName(), userForm.getMiddleName(), userForm.getAcademicDegree(), userForm.getDepartment(),
+                null);
+
         //Если не удалось сохранить данные, то возвращаем пользователя на страницу регистрации,
         //добавив в модель сообщение об том, что такой пользователь уже есть.
-        if (!userService.addNewUser(userForm))
+        if (!userService.addNewUser(user))
         {
             model.addAttribute("emailError", "Пользователь с данной почтой уже существует");
             return "registration";

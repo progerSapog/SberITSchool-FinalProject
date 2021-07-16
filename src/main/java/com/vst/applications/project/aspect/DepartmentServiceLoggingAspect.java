@@ -33,12 +33,12 @@ public class DepartmentServiceLoggingAspect
     @After("execution(public  * com.vst.applications.project.service.DepartmentService.findAll())")
     public void AfterFindAll()
     {
-        LOGGER.info("Получение всех записей таблицы CATHEDRA");
+        LOGGER.info("Получение всех записей таблицы Department");
     }
 
     /**
-     * After advice метода deleteCathedra
-     * Логгирует удаление записи из таблицы CATHEDRA
+     * After advice метода delete
+     * Логгирует удаление записи из таблицы Department
      * */
     @After("execution(public  * com.vst.applications.project.service.DepartmentService.delete(..))")
     public void AfterDeleteCathedra(JoinPoint joinPoint)
@@ -48,8 +48,8 @@ public class DepartmentServiceLoggingAspect
     }
 
     /**
-     * After advice метода saveCathedra
-     * Логгирует сохранение записи в таблице CATHEDRA
+     * After advice метода save
+     * Логгирует сохранение записи в таблице Department
      * */
     @After("execution(public  * com.vst.applications.project.service.DepartmentService.save(..))")
     public void AfterSaveCathedra(JoinPoint joinPoint)
@@ -59,8 +59,8 @@ public class DepartmentServiceLoggingAspect
     }
 
     /**
-     * After advice метода saveCathedra
-     * Логгирует изменение записи в таблице CATHEDRA
+     * Around advice метода findById
+     * Логгирует нахождение записи в таблице Department
      * */
     @Around("execution(public * com.vst.applications.project.service.DepartmentService.findById(..))")
     public Object AroundFindById(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -69,11 +69,11 @@ public class DepartmentServiceLoggingAspect
 
         if (((Optional<Department>)result).isPresent())
         {
-            LOGGER.info("Выбор записи № " + args[0] + " из таблицы CATHEDRA");
+            LOGGER.info("Выбор записи № " + args[0] + " из таблицы Department");
         }
         else
         {
-            LOGGER.warn("Запись № " + args[0] + " из таблицы CATHEDRA не найдена");
+            LOGGER.warn("Запись № " + args[0] + " из таблицы Department не найдена");
         }
 
         return result;

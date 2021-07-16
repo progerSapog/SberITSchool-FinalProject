@@ -65,7 +65,7 @@ public class UserService implements UserDetailsService
     {
         //Попытка найти пользователя с такой почто в БД
         //Если такой пользователь есть, то возвращаем false
-        User userBD = null;
+        User userBD;
         try
         {
             userBD = userRepository.findByEmail(user.getEmail());
@@ -119,6 +119,12 @@ public class UserService implements UserDetailsService
         return true;
     }
 
+    /**
+     * Сохранение записи в БД.
+     * Не содерждит никаких дополнительных действий.
+     *
+     * @param user - пользователь, которого необходимо сохранить
+     * */
     public void save(User user)
     {
         userRepository.save(user);

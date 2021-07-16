@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Контроллер, отвечающий за взаимодействие с entity Applications
@@ -35,14 +34,21 @@ public class ApplicationController
      * Получение списка заявок из БД, передача их на отображение
      * странице allApplications, переход на данную страницу.
      *
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
+     * @param user  - текущий пользователь. @AuthenticationPrincipal - получение
+     *                данных о текущем авторизованном пользователе.
+     * @param model - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенаправлен пользователь
      * */
     @GetMapping("/all")
     public String showAllApplications(@AuthenticationPrincipal User user, Model model)
     {
-        Map<String, Object> map = new HashMap<>();
-        map.put("allApplications", applicationsService.findAll());
+        Map<String, Object> map = new HashMap<>(
+                Map.ofEntries(
+                        Map.entry("allApplications", applicationsService.findAll())
+                )
+        );
+
+        //Проверка на авторизованного пользователя.
         if (user != null) map.put("user", user);
 
         model.mergeAttributes(map);
@@ -73,7 +79,7 @@ public class ApplicationController
      * В модель добавляем пустой Applications.
      * Перенаправление на данную страницу
      *
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
+     * @param model - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенаправлен пользователь
      * */
     @GetMapping("/add")
@@ -86,8 +92,8 @@ public class ApplicationController
     /**
      * Обработка Post запроса по /add.
      *
-     * @param  appForm - заполненый объект entity Applications
-     *                   @Valid отвечает за валидацию полей entity Applications при помощи Hibernate - validator
+     * @param  appForm - заполненый объект ApplicationsDTO
+     *                   @Valid отвечает за валидацию полей ApplicationsDTO при помощи Hibernate - validator
      *                   @ModelAttribute означает, что данный параметр функии мы должны получить из модели,
      *                   отправленной с html страницы после нажатия submit
      * @param bindingResult - интерфейс регистрации ошибок, обнаруженных Hibernate - validator
@@ -97,8 +103,8 @@ public class ApplicationController
      * */
     @PostMapping("/add")
     public String addApplications(@AuthenticationPrincipal User user,
-                                 @Valid @ModelAttribute("appForm") ApplicationsDTO appForm,
-                                 BindingResult bindingResult, Model model)
+                                  @Valid @ModelAttribute("appForm") ApplicationsDTO appForm,
+                                  BindingResult bindingResult, Model model)
     {
         Applications applications;
 
@@ -109,6 +115,7 @@ public class ApplicationController
             return "addApplication";
         }
 
+        /* Проверка на создание новой заявки / изменения старой. */
         if (appForm.getId() == null)
         {
             applications = new Applications(null, appForm.getAudienceNumber(), appForm.getText());
@@ -118,7 +125,6 @@ public class ApplicationController
             applications = new Applications(appForm.getId(), appForm.getAudienceNumber(), appForm.getText());
         }
         applications.setUser(user);
-
 
         //Если не удалось сохранить данные, то возвращаем пользователя на страницу регистрации,
         //добавив в модель сообщение об том, что такой пользователь уже есть.

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Интерфейс, использующий JPA Entity для взаимодействия с Entity
- * Role
+ * RoleDTO
  *
  * @see Role
  * */
@@ -21,6 +21,11 @@ public interface RoleRepository extends JpaRepository<Role, Long>
      * */
     Role findByName(String name);
 
+    /**
+     * Нахождение всех записей из таблицы.
+     *
+     * @return - список объектов - записей данного entity
+     * */
     @Override
     List<Role> findAll();
 }

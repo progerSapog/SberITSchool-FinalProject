@@ -33,11 +33,16 @@ public interface ApplicationsRepository extends JpaRepository<Applications, Long
     /**
      * Удаление из БД по id
      *
-     * @param id - id записи, которую необходимо найти.
+     * @param id - id записи, которую необходимо удалить.
      * */
     @Override
     void deleteById(Long id);
 
+    /**
+     * Найти запись в таблицы по id
+     *
+     * @param id - id записи, которую необходимо найти.
+     * */
     @Override
-    Optional<Applications> findById(Long aLong);
+    Optional<Applications> findById(Long id);
 }

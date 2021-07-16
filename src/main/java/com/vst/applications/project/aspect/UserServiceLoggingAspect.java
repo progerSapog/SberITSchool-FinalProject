@@ -75,11 +75,11 @@ public class UserServiceLoggingAspect
         Object[] args = joinPoint.getArgs();
         if (boolVal)
         {
-            LOGGER.info("Добавление пользователя" + ((User)args[0]).getEmail() + " в таблицу USERS");
+            LOGGER.info("Добавление пользователя " + ((User)args[0]).getEmail() + " в таблицу USERS");
         }
         else
         {
-            LOGGER.info("При добавление пользователя" + ((User)args[0]).getEmail() + " произошла ошибка");
+            LOGGER.info("При добавление пользователя " + ((User)args[0]).getEmail() + " произошла ошибка");
         }
     }
 

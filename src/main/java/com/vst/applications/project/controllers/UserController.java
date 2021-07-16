@@ -1,5 +1,6 @@
 package com.vst.applications.project.controllers;
 
+import com.vst.applications.project.DTO.UserDTO;
 import com.vst.applications.project.entity.User;
 import com.vst.applications.project.service.AcademicDegreeService;
 import com.vst.applications.project.service.DepartmentService;
@@ -24,6 +25,9 @@ import java.util.Optional;
  *
  * @see User
  * @see UserService
+ * @see RoleService
+ * @see DepartmentService
+ * @see AcademicDegreeService
  * */
 @Controller
 @RequestMapping("/user")
@@ -48,9 +52,9 @@ public class UserController
     /**
      * Обработка Get запроса /allUsers.
      * Получение списка пользователей из БД, передача их на отображение
-     * jsp странице allUsers, переход на данную страницу.
+     * странице allUsers, переход на данную страницу.
      *
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
+     * @param model - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенправлен пользователь
      * */
     @GetMapping("/all")
@@ -76,12 +80,12 @@ public class UserController
      * @return имя страниц
      * */
     @PostMapping("/all")
-    public String deleteUser(@RequestParam(defaultValue = "") String userId,
+    public String deleteUser(@RequestParam(defaultValue = "") Long userId,
                              @RequestParam(defaultValue = "") String action)
     {
         if (action.equals("delete"))
         {
-            userService.deleteUser(Long.parseLong(userId));
+            userService.deleteUser(userId);
         }
 
         return "redirect:/user/all";
@@ -115,17 +119,16 @@ public class UserController
      * Обработка Post запроса по /update.
      * Измнение данныех пользователя
      *
-     * @param  userForm - заполненый объект entity User
+     * @param  userForm - заполненый объект UserDTO
      *                    @Valid отвечает за валидацию полей при помощи Hibernate - validator
      *                    @ModelAttribute означает, что данный параметр функии мы должны получить из модели,
-     *                    отправленной с jsp/html страницы после нажатия submit
+     *                    отправленной с html страницы после нажатия submit
      * @param bindingResult - интерфейс регистрации ошибок, обнаруженных Hibernate - validator
-     * @param model         - объект для передачи данных с сервера на html/jsp страницу.
-     *
+     * @param model         - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенправлен пользователь
      * */
     @PostMapping("/update")
-    public String addUser(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)
+    public String addUser(@Valid @ModelAttribute("userForm") UserDTO userForm, BindingResult bindingResult, Model model)
     {
         Optional<User> userFromDB = userService.findById(userForm.getId());
 
@@ -158,7 +161,14 @@ public class UserController
             return "updateUser";
         }
 
-        if (!userService.update(userForm))
+        //Если все проверки пройдены успешно, то переписываем данные из DTO
+        //в объект класса User
+        User user = new User(userForm.getId(), userForm.getEmail(), userForm.getPassword(),
+                userForm.getPasswordConfirm(), userForm.getPasswordToChange(), userForm.getFirstName(),
+                userForm.getLastName(), userForm.getMiddleName(), userForm.getAcademicDegree(), userForm.getDepartment(),
+                userForm.getRoles());
+
+        if (!userService.update(user))
         {
             model.addAttribute("emailChangeError", "Почта уже занята");
             return "updateUser";
@@ -168,6 +178,14 @@ public class UserController
         return "redirect:/logout";
     }
 
+    /**
+     * Обработка POST запроса по адресу /update.
+     * Измнение роли пользователя администратором
+     *
+     * @param id     - id пользователя. @RequestParam - получение параметра из строки запроса
+     * @param model  - объект для передачи данных с сервера на html страницу.
+     * @return имя страниц
+     * */
     @GetMapping("/changeRole")
     public String changeRole(@RequestParam("userId") Long id, Model model)
     {
@@ -179,10 +197,23 @@ public class UserController
         return "changeRole";
     }
 
+    /**
+     * Обработка POST запроса по адресу /update.
+     * Измнение роли пользователя администратором
+     *
+     * @param  userForm - заполненый объект UserDTO
+     *                    @Valid отвечает за валидацию полей при помощи Hibernate - validator
+     *                    @ModelAttribute означает, что данный параметр функии мы должны получить из модели,
+     *                    отправленной с html страницы после нажатия submit
+     * @return имя страниц
+     * */
     @PostMapping("/changeRole")
-    public String changeRole(@Valid @ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)
+    public String changeRole(@Valid @ModelAttribute("userForm") UserDTO userForm)
     {
-        userService.save(userForm);
+        userService.save(new User(userForm.getId(), userForm.getEmail(), userForm.getPassword(),
+                userForm.getPasswordConfirm(), userForm.getPasswordToChange(), userForm.getFirstName(),
+                userForm.getLastName(), userForm.getMiddleName(), userForm.getAcademicDegree(),
+                userForm.getDepartment(), userForm.getRoles()));
         return "redirect:/user/all";
     }
 }

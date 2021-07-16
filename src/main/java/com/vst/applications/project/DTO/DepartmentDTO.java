@@ -6,12 +6,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Data Transfer Object для entity Cathedra.
- * Используется для передачи данных между клиенской и серверной частями.
- * Осуществляет валидацию данных.
+ * Data Transfer Object для entity
+ * Department
  *
  * @see Department
- */
+ * */
 public class DepartmentDTO
 {
     private Long id;

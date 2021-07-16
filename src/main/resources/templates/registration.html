@@ -39,7 +39,7 @@
             Выберите кафедру:
             <label>
                 <select class="department" th:field="${userForm.department}">
-                    <option th:each="department : ${cathedraList}"
+                    <option th:each="department : ${departmentList}"
                             th:value="${department.id}"
                             th:text="${department.name}">
                     </option>

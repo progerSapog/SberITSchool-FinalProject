@@ -29,8 +29,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
     @Autowired
     private UserService userService;
 
-    //Позвоялет получить bean на оснвое BCryptPasswordEncoder и внедрять его
-    //в другие классы
+    //Позвоялет получить bean на оснвое BCryptPasswordEncoder
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder()
     {
@@ -57,13 +56,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .antMatchers("/registration").not().fullyAuthenticated()
 
                 //Доступ для Админов
-                .antMatchers("/cathedra/**","/user/all").hasRole("ADMIN")
+                .antMatchers("/department/**","/user/all", "/user/changeRole").hasRole("ADMIN")
 
                 //Доступ всем
-                .antMatchers("/", "/applications/all").permitAll()
+                .antMatchers("/", "/application/all").permitAll()
 
                 //Требуют аутентификации
-                .antMatchers("/applications/add", "user/update", "user/update/**", "user/save").authenticated().and()
+                .antMatchers("/application/add", "/application/update", "user/update", "user/update/**", "user/save").authenticated().and()
 
                 //Настройка для входа в систему
                 .formLogin().loginPage("/login").usernameParameter("email").passwordParameter("password")

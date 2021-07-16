@@ -58,6 +58,11 @@ public class ApplicationsService
         }
     }
 
+    /**
+     * Нахождение записи по id
+     *
+     * @return Optional с найденой записью.
+     * */
     public Optional<Applications> findById(Long id)
     {
         return applicationsRepository.findById(id);

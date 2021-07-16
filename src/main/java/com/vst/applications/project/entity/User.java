@@ -15,7 +15,7 @@ import java.util.Set;
  * Для работы с БД entity должен реализовывать getters и setters
  * для всех полей и иметь конструтор по умолчанию.
  *
- * Имеет bi-directional association с entity Role
+ * Имеет bi-directional association с entity RoleDTO
  *
  * @see Role
  * */
@@ -28,15 +28,11 @@ public class User implements UserDetails
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_users_table")
     @SequenceGenerator(name = "sq_users_table", allocationSize = 1, sequenceName = "sq_users_table")
     private Long id;
-
-    @NotBlank
+    
     @Column(name = "email")
-    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Неверная почта")
     private String email;
-
-    @NotBlank
+    
     @Column(name = "password")
-    @Size(min = 2, message = "Пароль должен содержать от 2 символов")
     private String password;
 
     @Transient
@@ -44,20 +40,14 @@ public class User implements UserDetails
 
     @Transient
     private String passwordToChange;
-
-    @NotBlank
+    
     @Column(name = "first_name")
-    @Size(min = 2, message = "Неверное имя")
     private String firstName;
-
-    @NotBlank
+    
     @Column(name = "last_name")
-    @Size(min = 2, message = "Неверная фамилия")
     private String lastName;
-
-    @NotBlank
+    
     @Column(name = "middle_name")
-    @Size(min = 2, message = "Неверное отчество")
     private String middleName;
 
     /*  uni-directional many to one association with entity AcademicDegree */
@@ -70,12 +60,13 @@ public class User implements UserDetails
     @JoinColumn(name = "department_id")
     private Department department;
 
-    /*  bi-directional many to many association with entity Role
+    /*  bi-directional many to many association with entity RoleDTO
     JoinTable - USER_ROLE */
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
 
     /**
      * Перед удалением пользователя, удаляем его из множества
@@ -128,6 +119,20 @@ public class User implements UserDetails
     }
 
     public User() {
+    }
+
+    public User(Long id, String email, String password, String passwordConfirm, String passwordToChange, String firstName, String lastName, String middleName, AcademicDegree academicDegree, Department department, Set<Role> roles) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.passwordConfirm = passwordConfirm;
+        this.passwordToChange = passwordToChange;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.academicDegree = academicDegree;
+        this.department = department;
+        this.roles = roles;
     }
 
     public User(Long id)

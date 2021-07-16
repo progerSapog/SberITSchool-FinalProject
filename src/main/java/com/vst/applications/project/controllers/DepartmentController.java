@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 /**
- * Контроллер, отвечающий за взаимодействие с entity Cathedra
+ * Контроллер, отвечающий за взаимодействие с entity Department
  *
  * @see Department
  * @see DepartmentService
@@ -20,14 +20,14 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/department")
 public class DepartmentController {
-    //DI CathedraService в данный контроллер
+    //DI DepartmentService в данный контроллер
     @Autowired
     private DepartmentService departmentService;
 
     /**
      * Обработка Get запроса /all.
      * Получение списка кафедр из БД, передача их на отображение
-     * странице allCathedra, переход на данную страницу.
+     * странице allDepartment, переход на данную страницу.
      *
      * @param model - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенправлен пользователь
@@ -45,8 +45,8 @@ public class DepartmentController {
      * удаления используем метод POST, внутри которого передана дополнительная строка
      * с описанием действия - delete
      *
-     * @param cathedraId - id кафедры. @RequestParam - получение параметра из строки запроса
-     * @param action     - строка с описанием действия. @RequestParam - получение параметра из строки запроса
+     * @param departmentId - id кафедры. @RequestParam - получение параметра из строки запроса
+     * @param action       - строка с описанием действия. @RequestParam - получение параметра из строки запроса
      * @return перенравление по другому адресу
      * */
     @PostMapping("/all")
@@ -63,10 +63,10 @@ public class DepartmentController {
 
     /**
      * Обработка Get запроса /add
-     * Передача в модель пустого объекта Кафедра,
-     * переход на страницу addCathedra
+     * Передача в модель пустого объекта Department,
+     * переход на страницу addDepartment
      *
-     * @param model - объект для передачи данных с сервера на html/jsp страницу.
+     * @param model - объект для передачи данных с сервера на html страницу.
      * @return имя страницы, на которую будет перенаправлен пользователь
      * */
     @GetMapping("/add")
@@ -92,10 +92,10 @@ public class DepartmentController {
     /**
      * Обработка Post запроса по /add.
      *
-     * @param departmentDTO - заполненый объект dto Cathedra
+     * @param departmentDTO - заполненый объект DepartmentDTO
      *                        @Valid отвечает за валидацию полей при помощи Hibernate - validator
      *                        @ModelAttribute означает, что данный параметр функии мы должны получить из модели,
-     *                        отправленной с jsp/html страницы после нажатия submit
+     *                        отправленной с html страницы после нажатия submit
      * @param bindingResult - интерфейс регистрации ошибок, обнаруженных Hibernate - validator
      * @return перенравление по другому адресу
      * */

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Сервис для взаимодействия с entity Role при помощи
+ * Сервис для взаимодействия с entity RoleDTO при помощи
  * RoleRepository
  *
  * @see Role
@@ -32,6 +32,11 @@ public class RoleService
         return roleRepository.findByName(name);
     }
 
+    /**
+     * Получение всхе записей из таблицы
+     *
+     * @return список всех записей.
+     * */
     public List<Role> findAll()
     {
         return roleRepository.findAll();

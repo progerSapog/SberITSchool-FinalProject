@@ -1,15 +1,16 @@
 package com.vst.applications.project.DTO;
 
+import com.vst.applications.project.entity.Applications;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * Класс объектов заявка - таблица БД APPLICATIONS
- * Для работы с БД entity должен реализовывать getters и setters
- * для всех полей и иметь конструтор по умолчанию.
+ * Data Transfer Object для entity
+ * Applications
  *
- * @see com.vst.applications.project.entity.Applications
+ * @see Applications
  * */
 public class ApplicationsDTO
 {
