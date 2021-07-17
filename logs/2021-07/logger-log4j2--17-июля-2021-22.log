@@ -1,0 +1,56 @@
+2021-07-17 13:27:35,183 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.0.Final
+2021-07-17 13:27:35,215 INFO o.s.b.StartupInfoLogger [main] Starting ApplicationsControllerTest using Java 11.0.11 on progerSapog with PID 18263 (started by vladislove in /home/vladislove/Документы/SberITSchool-FinalProject)
+2021-07-17 13:27:35,235 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-07-17 13:27:35,644 WARN o.s.c.l.CompositeLog [background-preinit] For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-07-17 13:27:36,105 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-17 13:27:36,193 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 77 ms. Found 5 JPA repository interfaces.
+2021-07-17 13:27:36,993 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2021-07-17 13:27:37,312 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-07-17 13:27:37,363 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-07-17 13:27:37,406 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-07-17 13:27:37,525 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-07-17 13:27:37,641 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-07-17 13:27:38,491 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-07-17 13:27:38,501 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-17 13:27:38,584 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-17 13:27:39,391 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d76d72a, org.springframework.security.web.context.SecurityContextPersistenceFilter@5c648e38, org.springframework.security.web.header.HeaderWriterFilter@6491006, org.springframework.security.web.authentication.logout.LogoutFilter@30bfdcc5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4e8b36af, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e733bb5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@76876421, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6fd07a56, org.springframework.security.web.session.SessionManagementFilter@106ac5f4, org.springframework.security.web.access.ExceptionTranslationFilter@5b5f61cc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@77511e9c]
+2021-07-17 13:27:39,827 INFO o.s.b.a.w.s.WelcomePageHandlerMapping [main] Adding welcome page template: index
+2021-07-17 13:27:40,172 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2021-07-17 13:27:40,172 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2021-07-17 13:27:40,174 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 2 ms
+2021-07-17 13:27:40,206 INFO o.s.b.StartupInfoLogger [main] Started ApplicationsControllerTest in 5.345 seconds (JVM running for 6.667)
+2021-07-17 13:27:40,208 INFO o.s.b.a.ApplicationAvailabilityBean [main] Application availability state LivenessState changed to CORRECT
+2021-07-17 13:27:40,211 INFO o.s.b.a.ApplicationAvailabilityBean [main] Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2021-07-17 13:27:40,411 WARN c.v.a.p.a.UserServiceLoggingAspect [main] Ошибка аутентификации пользователя: pert1@gmail.com
+2021-07-17 13:27:40,412 INFO c.v.a.p.a.UserServiceLoggingAspect [main] Успешная аутентификации пользователя: pert1@gmail.com
+2021-07-17 13:27:40,413 WARN o.s.t.c.TestContextManager [main] Caught exception while invoking 'beforeTestMethod' callback on TestExecutionListener [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@5be783a] for test method [public void com.vst.applications.project.integration_tests.ApplicationsControllerTest.applicationsAddPageTest() throws java.lang.Exception] and test instance [com.vst.applications.project.integration_tests.ApplicationsControllerTest@1c65740a]
+java.lang.IllegalStateException: Unable to create SecurityContext using @org.springframework.security.test.context.support.WithUserDetails(setupBefore=TEST_METHOD, userDetailsServiceBeanName=, value=pert1@gmail.com)
+	at org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener.lambda$createTestSecurityContext$0(WithSecurityContextTestExecutionListener.java:126) ~[spring-security-test-5.5.0.jar:5.5.0]
+	at org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener.beforeTestMethod(WithSecurityContextTestExecutionListener.java:73) ~[spring-security-test-5.5.0.jar:5.5.0]
+	at org.springframework.test.context.TestContextManager.beforeTestMethod(TestContextManager.java:289) [spring-test-5.3.7.jar:5.3.7]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74) [spring-test-5.3.7.jar:5.3.7]
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86) [spring-test-5.3.7.jar:5.3.7]
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84) [spring-test-5.3.7.jar:5.3.7]
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366) [junit-4.13.2.jar:4.13.2]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251) [spring-test-5.3.7.jar:5.3.7]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97) [spring-test-5.3.7.jar:5.3.7]
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331) [junit-4.13.2.jar:4.13.2]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79) [junit-4.13.2.jar:4.13.2]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329) [junit-4.13.2.jar:4.13.2]
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66) [junit-4.13.2.jar:4.13.2]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293) [junit-4.13.2.jar:4.13.2]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-5.3.7.jar:5.3.7]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70) [spring-test-5.3.7.jar:5.3.7]
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306) [junit-4.13.2.jar:4.13.2]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413) [junit-4.13.2.jar:4.13.2]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190) [spring-test-5.3.7.jar:5.3.7]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137) [junit-4.13.2.jar:4.13.2]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69) [junit-rt.jar:?]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:221) [junit-rt.jar:?]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54) [junit-rt.jar:?]
+Caused by: java.lang.NullPointerException
+	at org.springframework.security.test.context.support.WithUserDetailsSecurityContextFactory.createSecurityContext(WithUserDetailsSecurityContextFactory.java:62) ~[spring-security-test-5.5.0.jar:5.5.0]
+	at org.springframework.security.test.context.support.WithUserDetailsSecurityContextFactory.createSecurityContext(WithUserDetailsSecurityContextFactory.java:43) ~[spring-security-test-5.5.0.jar:5.5.0]
+	at org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener.lambda$createTestSecurityContext$0(WithSecurityContextTestExecutionListener.java:123) ~[spring-security-test-5.5.0.jar:5.5.0]
+	... 23 more

@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
   <title>Applications</title>
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
@@ -38,8 +38,8 @@
         <td>
           <div sec:authorize="hasRole('ADMIN')">
             <form th:action="@{/application/all}" method="post">
-              <input type="hidden" name="applicationId" th:value="${app.id}">
-              <input type="hidden" name="action" value="delete">
+              <input type="hidden" name="applicationId" th:value="${app.id}"/>
+              <input type="hidden" name="action" value="delete"/>
               <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
             </form>
           </div>
@@ -47,8 +47,8 @@
           <div sec:authorize="!hasRole('ADMIN')">
             <div th:if="${app.user.id.equals(user.id)}">
               <form action="/application/all" method="post">
-                <input type="hidden" name="applicationId" th:value="${app.id}">
-                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="applicationId" th:value="${app.id}"/>
+                <input type="hidden" name="action" value="delete"/>
                 <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
               </form>
             </div>
@@ -58,7 +58,7 @@
         <div th:if="${app.user.id.equals(user.id)}">
           <td>
             <form th:action="@{/application/update}">
-              <input type="hidden" name="appId" th:value="${app.id}">
+              <input type="hidden" name="appId" th:value="${app.id}"/>
               <button>Изменить</button>
             </form>
           </td>

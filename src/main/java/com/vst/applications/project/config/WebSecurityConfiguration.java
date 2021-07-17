@@ -62,7 +62,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .antMatchers("/", "/application/all").permitAll()
 
                 //Требуют аутентификации
-                .antMatchers("/application/add", "/application/update", "user/update", "user/update/**", "user/save").authenticated().and()
+                .antMatchers("/application/add", "/application/update", "/user/update", "/user/update/**", "/user/save").authenticated().and()
 
                 //Настройка для входа в систему
                 .formLogin().loginPage("/login").usernameParameter("email").passwordParameter("password")

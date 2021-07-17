@@ -1,0 +1,47 @@
+2021-07-17 13:02:58,041 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.0.Final
+2021-07-17 13:02:58,075 INFO o.s.b.StartupInfoLogger [restartedMain] Starting ProjectApplication using Java 11.0.11 on progerSapog with PID 13925 (/home/vladislove/Документы/SberITSchool-FinalProject/target/classes started by vladislove in /home/vladislove/Документы/SberITSchool-FinalProject)
+2021-07-17 13:02:58,079 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-07-17 13:02:58,117 INFO o.s.b.l.DeferredLog [restartedMain] The Class-Path manifest attribute in /home/vladislove/.m2/repository/com/oracle/database/jdbc/ojdbc8/21.1.0.0/ojdbc8-21.1.0.0.jar referenced one or more files that do not exist: file:/home/vladislove/.m2/repository/com/oracle/database/jdbc/ojdbc8/21.1.0.0/oraclepki.jar
+2021-07-17 13:02:58,118 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-07-17 13:02:58,119 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-07-17 13:02:58,296 WARN o.s.c.l.CompositeLog [background-preinit] For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-07-17 13:02:58,558 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-17 13:02:58,608 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 45 ms. Found 5 JPA repository interfaces.
+2021-07-17 13:02:59,120 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2021-07-17 13:02:59,133 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2021-07-17 13:02:59,133 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2021-07-17 13:02:59,133 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.46]
+2021-07-17 13:02:59,385 INFO o.a.j.l.DirectJDKLog [restartedMain] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-07-17 13:02:59,392 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-07-17 13:02:59,392 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1272 ms
+2021-07-17 13:02:59,506 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2021-07-17 13:02:59,691 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2021-07-17 13:02:59,716 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-07-17 13:02:59,739 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-07-17 13:02:59,796 INFO o.h.a.c.r.j.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-07-17 13:02:59,860 INFO o.h.d.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-07-17 13:03:00,391 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-07-17 13:03:00,397 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-17 13:03:00,435 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-17 13:03:00,855 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1bbaed65, org.springframework.security.web.context.SecurityContextPersistenceFilter@781dd7cb, org.springframework.security.web.header.HeaderWriterFilter@5522fbb6, org.springframework.security.web.authentication.logout.LogoutFilter@545ec444, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4cb02aae, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@65169ab7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6191dab3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2693e15d, org.springframework.security.web.session.SessionManagementFilter@577edd4a, org.springframework.security.web.access.ExceptionTranslationFilter@51ae7771, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42a0e345]
+2021-07-17 13:03:00,983 INFO o.s.b.a.w.s.WelcomePageHandlerMapping [restartedMain] Adding welcome page template: index
+2021-07-17 13:03:01,129 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2021-07-17 13:03:01,144 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2021-07-17 13:03:01,239 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-17 13:03:01,250 INFO o.s.b.StartupInfoLogger [restartedMain] Started ProjectApplication in 3.581 seconds (JVM running for 4.546)
+2021-07-17 13:03:01,251 INFO o.s.b.a.ApplicationAvailabilityBean [restartedMain] Application availability state LivenessState changed to CORRECT
+2021-07-17 13:03:01,252 INFO o.s.b.a.ApplicationAvailabilityBean [restartedMain] Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2021-07-17 13:03:02,506 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-17 13:03:02,507 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-07-17 13:03:02,508 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2021-07-17 13:03:11,018 INFO c.v.a.p.a.UserServiceLoggingAspect [http-nio-8080-exec-3] Успешная аутентификации пользователя: admin@gmail.com
+2021-07-17 13:06:18,759 INFO c.v.a.p.a.DepartmentServiceLoggingAspect [http-nio-8080-exec-5] Получение всех записей таблицы Department
+2021-07-17 13:06:18,779 INFO c.v.a.p.a.AcademicDegreeServiceLoggingAspect [http-nio-8080-exec-5] Получение всех записей таблицы ACADEMIC_DEGREE
+2021-07-17 13:06:33,320 INFO c.v.a.p.a.DepartmentServiceLoggingAspect [http-nio-8080-exec-7] Получение всех записей таблицы Department
+2021-07-17 13:06:33,323 INFO c.v.a.p.a.AcademicDegreeServiceLoggingAspect [http-nio-8080-exec-7] Получение всех записей таблицы ACADEMIC_DEGREE
+2021-07-17 13:06:33,327 INFO c.v.a.p.a.UserServiceLoggingAspect [http-nio-8080-exec-7] При добавление пользователя petr@gmail.com произошла ошибка
+2021-07-17 13:06:40,958 INFO c.v.a.p.a.DepartmentServiceLoggingAspect [http-nio-8080-exec-9] Получение всех записей таблицы Department
+2021-07-17 13:06:40,962 INFO c.v.a.p.a.AcademicDegreeServiceLoggingAspect [http-nio-8080-exec-9] Получение всех записей таблицы ACADEMIC_DEGREE
+2021-07-17 13:06:41,404 INFO c.v.a.p.a.UserServiceLoggingAspect [http-nio-8080-exec-9] Добавление пользователя petr1@gmail.com в таблицу USERS
+2021-07-17 13:06:49,180 INFO c.v.a.p.a.UserServiceLoggingAspect [http-nio-8080-exec-4] Успешная аутентификации пользователя: petr1@gmail.com
+2021-07-17 13:29:09,819 INFO o.s.b.a.ApplicationAvailabilityBean [SpringContextShutdownHook] Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC

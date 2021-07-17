@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
   <title>new application</title>
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
@@ -27,7 +27,7 @@
     <div>
       <label>
         Номер аудитории:
-        <input type="text" th:field="${appForm.audienceNumber}" required pattern="[0-6][0-5]\d{2}"/>
+        <input type="text" th:field="${appForm.audienceNumber}" required="required" pattern="[0-6][0-5]\d{2}"/>
       </label>
       <label class="form-field-error" th:if="${#fields.hasErrors('appForm.audienceNumber')}" th:errors="*{appForm.audienceNumber}"></label>
     </div>

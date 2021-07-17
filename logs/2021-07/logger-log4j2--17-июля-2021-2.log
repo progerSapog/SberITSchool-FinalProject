@@ -1,0 +1,20 @@
+2021-07-17 12:36:59,029 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.0.Final
+2021-07-17 12:36:59,048 INFO o.s.b.StartupInfoLogger [main] Starting LoginTest using Java 11.0.11 on progerSapog with PID 10226 (started by vladislove in /home/vladislove/Документы/SberITSchool-FinalProject)
+2021-07-17 12:36:59,056 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-07-17 12:36:59,484 WARN o.s.c.l.CompositeLog [background-preinit] For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-07-17 12:36:59,922 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-17 12:37:00,022 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 89 ms. Found 5 JPA repository interfaces.
+2021-07-17 12:37:00,776 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2021-07-17 12:37:02,011 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-07-17 12:37:02,071 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-07-17 12:37:02,138 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-07-17 12:37:02,288 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-07-17 12:37:02,628 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-07-17 12:37:03,640 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-07-17 12:37:03,647 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-17 12:37:03,719 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-17 12:37:04,760 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36570936, org.springframework.security.web.context.SecurityContextPersistenceFilter@62a6a47e, org.springframework.security.web.header.HeaderWriterFilter@70a91d72, org.springframework.security.web.authentication.logout.LogoutFilter@434a72f2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1ae90cb9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6bf70600, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@23adbd6b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@775fec4, org.springframework.security.web.session.SessionManagementFilter@27adb90f, org.springframework.security.web.access.ExceptionTranslationFilter@68e62b3b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@325a781c]
+2021-07-17 12:37:05,261 INFO o.s.b.a.w.s.WelcomePageHandlerMapping [main] Adding welcome page template: index
+2021-07-17 12:37:05,512 INFO o.s.b.StartupInfoLogger [main] Started LoginTest in 6.777 seconds (JVM running for 8.07)
+2021-07-17 12:37:05,513 INFO o.s.b.a.ApplicationAvailabilityBean [main] Application availability state LivenessState changed to CORRECT
+2021-07-17 12:37:05,515 INFO o.s.b.a.ApplicationAvailabilityBean [main] Application availability state ReadinessState changed to ACCEPTING_TRAFFIC

@@ -1,0 +1,24 @@
+2021-07-17 13:20:56,377 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.0.Final
+2021-07-17 13:20:56,404 INFO o.s.b.StartupInfoLogger [main] Starting LoginTest using Java 11.0.11 on progerSapog with PID 17047 (started by vladislove in /home/vladislove/Документы/SberITSchool-FinalProject)
+2021-07-17 13:20:56,411 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-07-17 13:20:56,840 WARN o.s.c.l.CompositeLog [background-preinit] For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-07-17 13:20:57,305 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-17 13:20:57,392 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 77 ms. Found 5 JPA repository interfaces.
+2021-07-17 13:20:58,353 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2021-07-17 13:20:58,683 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-07-17 13:20:58,758 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-07-17 13:20:58,825 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-07-17 13:20:58,990 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-07-17 13:20:59,120 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-07-17 13:20:59,984 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-07-17 13:20:59,991 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-17 13:21:00,068 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-17 13:21:00,994 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ebd6a0d, org.springframework.security.web.context.SecurityContextPersistenceFilter@50eae15a, org.springframework.security.web.header.HeaderWriterFilter@7e4c0bc7, org.springframework.security.web.authentication.logout.LogoutFilter@141c66db, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@32182bf8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39179470, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5746609e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@714d7c7b, org.springframework.security.web.session.SessionManagementFilter@c7d173f, org.springframework.security.web.access.ExceptionTranslationFilter@7db679, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2c485b3a]
+2021-07-17 13:21:01,535 INFO o.s.b.a.w.s.WelcomePageHandlerMapping [main] Adding welcome page template: index
+2021-07-17 13:21:01,864 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2021-07-17 13:21:01,864 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2021-07-17 13:21:01,866 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 1 ms
+2021-07-17 13:21:01,886 INFO o.s.b.StartupInfoLogger [main] Started LoginTest in 5.868 seconds (JVM running for 7.108)
+2021-07-17 13:21:01,888 INFO o.s.b.a.ApplicationAvailabilityBean [main] Application availability state LivenessState changed to CORRECT
+2021-07-17 13:21:01,890 INFO o.s.b.a.ApplicationAvailabilityBean [main] Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2021-07-17 13:21:02,284 INFO c.v.a.p.a.UserServiceLoggingAspect [main] Успешная аутентификации пользователя: admin@gmail.com
