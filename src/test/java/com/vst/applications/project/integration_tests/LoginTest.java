@@ -42,59 +42,6 @@ public class LoginTest
     }
 
     /**
-     * Тест - данные страницы требуют авторизации.
-     * is3xxRedirection - перенаправление на страницу login
-     * */
-    @Test
-    public void accessDeniedTest() throws Exception
-    {
-        this.mockMvc.perform(get("/application/add"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-
-        this.mockMvc.perform(get("/application/update"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-
-        this.mockMvc.perform(get("/user/update"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-
-        this.mockMvc.perform(get("/user/update/**"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-
-        this.mockMvc.perform(get("/user/save"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-
-        this.mockMvc.perform(get("/user/update/**"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-
-        this.mockMvc.perform(get("/department/**"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-
-        this.mockMvc.perform(get("/user/all"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-
-        this.mockMvc.perform(get("/user/changeRole"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("http://localhost/login"));
-    }
-
-    /**
      * Проверка входа с правильынми параметрами.
      * */
     @Test

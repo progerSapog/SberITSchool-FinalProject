@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
   <title>Users</title>
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
@@ -53,15 +53,15 @@
       <div th:if="${!user.roles.contains(role)}">
         <td>
           <form th:action="@{/user/changeRole}" method="get">
-            <input type="hidden" name="userId" th:value="${user.id}">
-            <input type="hidden" name="action" value="changeRole">
+            <input type="hidden" name="userId" th:value="${user.id}"/>
+            <input type="hidden" name="action" value="changeRole"/>
             <button type="submit">Изменить</button>
           </form>
         </td>
         <td>
           <form th:action="@{/user/all}" method="post">
-            <input type="hidden" name="userId" th:value="${user.id}">
-            <input type="hidden" name="action" value="delete">
+            <input type="hidden" name="userId" th:value="${user.id}"/>
+            <input type="hidden" name="action" value="delete"/>
             <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
           </form>
         </td>
@@ -69,7 +69,7 @@
     </tr>
 
   </table>
-  <br>
+  <br/>
   <a href="/">Главная</a>
 
 </body>

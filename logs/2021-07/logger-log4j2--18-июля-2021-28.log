@@ -1,0 +1,24 @@
+2021-07-18 12:59:44,271 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.0.Final
+2021-07-18 12:59:44,335 INFO o.s.b.StartupInfoLogger [main] Starting DepartmentControllerTest using Java 11.0.11 on progersapog with PID 23682 (started by progersapog in /home/progersapog/Документы/SberITSchool-FinalProject)
+2021-07-18 12:59:44,358 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-07-18 12:59:45,542 WARN o.s.c.l.CompositeLog [background-preinit] For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-07-18 12:59:46,442 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-18 12:59:46,602 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 142 ms. Found 5 JPA repository interfaces.
+2021-07-18 12:59:48,155 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2021-07-18 12:59:48,956 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-07-18 12:59:49,109 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-07-18 12:59:49,291 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.4.31.Final
+2021-07-18 12:59:49,671 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-07-18 12:59:50,056 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2021-07-18 12:59:52,232 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-07-18 12:59:52,253 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-18 12:59:52,402 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-18 12:59:54,391 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@70ca8e72, org.springframework.security.web.context.SecurityContextPersistenceFilter@5fee3c9c, org.springframework.security.web.header.HeaderWriterFilter@ae5d544, org.springframework.security.web.authentication.logout.LogoutFilter@80b70fd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6ebf9c2d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30bfdcc5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@19834eb7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34e7cde3, org.springframework.security.web.session.SessionManagementFilter@14b9817b, org.springframework.security.web.access.ExceptionTranslationFilter@13b5598b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@37823482]
+2021-07-18 12:59:55,493 INFO o.s.b.a.w.s.WelcomePageHandlerMapping [main] Adding welcome page template: index
+2021-07-18 12:59:56,262 INFO o.s.m.w.MockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2021-07-18 12:59:56,263 INFO o.s.w.s.FrameworkServlet [main] Initializing Servlet ''
+2021-07-18 12:59:56,265 INFO o.s.w.s.FrameworkServlet [main] Completed initialization in 2 ms
+2021-07-18 12:59:56,317 INFO o.s.b.StartupInfoLogger [main] Started DepartmentControllerTest in 13.0 seconds (JVM running for 16.567)
+2021-07-18 12:59:56,320 INFO o.s.b.a.ApplicationAvailabilityBean [main] Application availability state LivenessState changed to CORRECT
+2021-07-18 12:59:56,324 INFO o.s.b.a.ApplicationAvailabilityBean [main] Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2021-07-18 12:59:58,128 INFO c.v.a.p.a.UserServiceLoggingAspect [main] Успешная аутентификации пользователя: Petr@gmail.com

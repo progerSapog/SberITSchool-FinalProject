@@ -2,6 +2,9 @@ ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;
 CREATE USER VST_ADMIN IDENTIFIED BY vst1243;
 GRANT ALL PRIVILEGES TO VST_ADMIN;
 
+CREATE USER VST_TEST IDENTIFIED BY vst1243test;
+GRANT ALL PRIVILEGES TO VST_TEST;
+
 /***********************************************************************/
 /* Создание таблицы кафедр ИРИТа */
 CREATE TABLE VST_ADMIN.DEPARTMENT

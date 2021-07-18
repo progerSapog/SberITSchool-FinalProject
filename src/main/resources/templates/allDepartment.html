@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
   <title>Departments</title>
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
@@ -28,14 +28,14 @@
       <td th:text="${department.name}"></td>
       <td>
         <form th:action="@{/department/update}">
-          <input type="hidden" name="departmentId" th:value="${department.id}">
+          <input type="hidden" name="departmentId" th:value="${department.id}"/>
           <button>Изменить</button>
         </form>
       </td>
       <td>
         <form th:action="@{/department/all}" method="post">
-          <input type="hidden" name="departmentId" th:value="${department.id}">
-          <input type="hidden" name="action" value="delete">
+          <input type="hidden" name="departmentId" th:value="${department.id}"/>
+          <input type="hidden" name="action" value="delete"/>
           <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
         </form>
       </td>

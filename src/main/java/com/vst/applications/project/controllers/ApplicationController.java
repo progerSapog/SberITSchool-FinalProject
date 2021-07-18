@@ -146,7 +146,7 @@ public class ApplicationController
      * @return перенравление по другому адресу
      * */
     @GetMapping("/update")
-    public String updateCathedra(@RequestParam("appId") Long id, Model model)
+    public String updateApplication(@RequestParam("appId") Long id, Model model)
     {
         applicationsService.findById(id).ifPresent(app -> model.addAttribute("appForm", app));
         return "addApplication";
