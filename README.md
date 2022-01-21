@@ -16,7 +16,7 @@
   + Hibernate-validator 6.2.0
 + UI
   + JSP (jstl 1.2)
-+ Oracle DaatBase Enterprice 12.2.0.1  
++ Oracle DataBase Enterprice 12.2.0.1  
 
 ### Описание сервиса
 <p> Сервис предназначен для сбора заявок на установку программного обеспечения внутри института/кафедры. </p>
